@@ -1,0 +1,14 @@
+# Companion applications (dashboards, Streamlit and Dash apps, Flask tools).
+# docs/apps/index.md is generated from this file by a macro loop.
+apps:
+  as_of: 2026-10-24
+  items:
+    example-dashboard:
+      name: Example dashboard
+      kind: dashboard         # dashboard | streamlit | dash | flask | notebook | other
+      url: https://example.com/apps/example
+      owner: analytics-lead
+      purpose: One sentence on what question it answers.
+      status: active          # active | beta | deprecated
+      linked_from:
+        - business/kpi-example.md

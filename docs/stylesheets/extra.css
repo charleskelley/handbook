@@ -1,0 +1,12 @@
+/* Custom colour overrides. Uncomment and adjust to use exact brand values with
+   the alternate palette in zensical.toml. */
+/*
+[data-md-color-primary="green"] {
+  --md-primary-fg-color: #004225;
+  --md-primary-fg-color--light: #1b5e3a;
+  --md-primary-fg-color--dark: #002d19;
+}
+[data-md-color-accent="amber"] {
+  --md-accent-fg-color: #d4a017;
+}
+*/

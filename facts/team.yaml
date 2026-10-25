@@ -1,0 +1,28 @@
+# Roles, who holds them, channels, and rituals. Pages reference roles, not
+# names, wherever possible so content survives staff changes.
+team:
+  as_of: 2026-10-24
+  roles:
+    ds-lead:
+      holder: null
+      scope: Data science direction, prioritization, review.
+    mle-lead:
+      holder: null
+      scope: Model serving, platform integration, reliability.
+    platform-owner:
+      holder: null
+      scope: Warehouse, compute, access.
+    analytics-lead:
+      holder: null
+      scope: KPI definitions, measurement, reporting.
+  channels:
+    team: null               # e.g. "#ds-team"
+    help: null               # where partners ask questions
+    incidents: null
+  rituals:
+    planning:
+      cadence: null
+      page: team/how-we-work-planning.md
+    review:
+      cadence: null
+      page: team/how-we-work-review.md

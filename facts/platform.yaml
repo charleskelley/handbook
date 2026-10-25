@@ -1,0 +1,31 @@
+# Platform components, environments, quotas, and URLs.
+# Pages render these with macros, e.g. {{ platform.components.warehouse.quota }}.
+platform:
+  as_of: 2026-10-24
+  environments:
+    dev:
+      purpose: Experimentation and development.
+      url: null
+    prod:
+      purpose: Scheduled jobs and serving.
+      url: null
+  components:
+    warehouse:
+      name: Data warehouse
+      owner: platform-owner
+      quota: null            # e.g. "500 slots" or "10 TB/day scan"
+      quota_unit: null
+      docs_url: null
+      support_channel: null
+    compute:
+      name: Compute
+      owner: platform-owner
+      quota: null
+      quota_unit: null
+      docs_url: null
+      support_channel: null
+    registry:
+      name: Model registry
+      owner: mle-lead
+      docs_url: null
+      support_channel: null

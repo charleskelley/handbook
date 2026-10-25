@@ -1,0 +1,13 @@
+[project]
+name = "handbook"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+docs = [
+    "pydantic>=2.14.1",
+    "pymarkdownlnt>=0.9.41",
+    "pyyaml>=6.0.3",
+    "zensical==0.0.72",
+]

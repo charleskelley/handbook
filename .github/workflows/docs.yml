@@ -1,0 +1,31 @@
+name: docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --group docs
+      - name: Front matter schema
+        run: uv run --group docs python scripts/validate_frontmatter.py docs
+      - name: Markdown lint
+        run: uv run --group docs pymarkdown --config .pymarkdown.json scan -r docs
+      - name: Build
+        run: uv run --group docs zensical build
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --no-progress site
+          fail: true
+      - name: Stale pages (informational)
+        run: uv run --group docs python scripts/stale_report.py docs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
