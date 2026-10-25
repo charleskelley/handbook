@@ -10,8 +10,8 @@ page type defined here, the spec is changed first and the page second.
 
 The handbook is the single reference for how a data science and machine
 learning team works inside its company: how the business makes money and what
-it measures, the technology the team runs on, the modeling knowledge it has
-accumulated, the conventions it follows, and how the team itself operates. It
+it measures, the technology the team runs on, the methods it uses and what it has learned
+using them, the conventions it follows, and how the team itself operates. It
 serves three audiences at once: a new hire in their first month, a current team
 member looking something up, and a cross-functional partner trying to
 understand what the team does and why.

@@ -11,8 +11,8 @@ review_cadence: 180d
 # Handbook
 
 This is the team's single reference for how we work: how the business makes
-money and what it measures, the technology we run on, what we have learned
-about modeling here, the conventions we follow, and how the team itself
+money and what it measures, the technology we run on, the methods we use and what we have
+learned using them here, the conventions we follow, and how the team itself
 operates. It is written for three readers at once: someone in their first
 month, a team member looking something up, and a partner elsewhere in the
 company trying to understand what we do and why.

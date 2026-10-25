@@ -8,7 +8,7 @@ the short version you must follow.
 
 A team handbook: Markdown under `docs/`, facts under `facts/`, rendered to a
 static site with Zensical. Pages describe how the business works, the
-technology the team runs on, modeling knowledge, conventions, and how the team
+technology the team runs on, the methods it uses, conventions, and how the team
 operates.
 
 ## Rules
