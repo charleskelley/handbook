@@ -45,10 +45,10 @@ linked from here through the app registry.
 | Home | `docs/index.md` | What the handbook is, how to use it, the onboarding paths | `landing` |
 | Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `economics`, `strategy`, `kpi` |
 | Data | `docs/data/` | Where the data comes from, how it is organized, what each dataset holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
-| Technology | `docs/technology/` | The platform, environments, local setup, access control | `platform`, `setup-guide`, `access` |
 | Modeling | `docs/modeling/` | Model families in use and their lessons, the features the business relies on, causal maps, postmortems | `model-family`, `feature`, `causal-map`, `lesson` |
-| Reference | `docs/reference/` | Code style and conventions, best practices, task recipes | `convention`, `practice`, `how-to` |
+| Technology | `docs/technology/` | The platform, environments, local setup, access control | `platform`, `setup-guide`, `access` |
 | Team | `docs/team/` | How the team works, onboarding reading paths, decision records | `how-we-work`, `onboarding-path`, `decision-record` |
+| Reference | `docs/reference/` | Code style and conventions, best practices, task recipes | `convention`, `practice`, `how-to` |
 | Glossary | `docs/glossary/` | Terms the team and its partners use, defined once | `glossary` |
 | Apps | `docs/apps/` | Registry of companion applications, generated from `facts/apps.yaml` | `app-registry` |
 

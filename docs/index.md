@@ -25,14 +25,16 @@ company trying to understand what we do and why.
 
 ## Sections
 
-- [Business](business/index.md): how the company and its products make money, the strategies that matter, the KPIs and what they mean.
-- [Data](data/index.md): where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it.
-- [Technology](technology/index.md): the platform, environments, local setup, and access.
-- [Modeling](modeling/index.md): model families and their lessons, the features the business relies on, causal maps, postmortems.
-- [Reference](reference/index.md): code style, conventions, best practices, recipes.
-- [Team](team/index.md): how we work, onboarding, decision records.
-- [Glossary](glossary/index.md): terms defined once.
-- [Apps](apps/index.md): the registry of dashboards and companion applications.
+In reading order. Each one depends on the ones before it.
+
+- [Business](business/index.md): how the company and its products make money, the strategies that matter, the KPIs and what they mean. The thing to understand first.
+- [Data](data/index.md): the inputs, and how the business is represented in them. Where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it.
+- [Modeling](modeling/index.md): the methods we use on that data. Model families and their lessons, the features the business relies on, causal maps, postmortems.
+- [Technology](technology/index.md): the systems and stack the first three run on. Storage, compute, serving, assistants, access.
+- [Team](team/index.md): who does what, how to reach them, how work enters and leaves the team, onboarding, decision records.
+- [Reference](reference/index.md): lookup. Standards for operation, coding, version control, and the recipes for common tasks.
+- [Glossary](glossary/index.md): business and working terms and acronyms, defined once.
+- [Apps](apps/index.md): links to the dashboards and companion applications that matter.
 
 ## How this handbook is maintained
 

@@ -17,14 +17,11 @@ nav = [
   { "Data" = [
     { "Overview" = "data/index.md" },
   ] },
-  { "Technology" = [
-    { "Overview" = "technology/index.md" },
-  ] },
   { "Modeling" = [
     { "Overview" = "modeling/index.md" },
   ] },
-  { "Reference" = [
-    { "Overview" = "reference/index.md" },
+  { "Technology" = [
+    { "Overview" = "technology/index.md" },
   ] },
   { "Team" = [
     { "Overview" = "team/index.md" },
@@ -37,6 +34,9 @@ nav = [
     { "Decisions" = [
       { "Overview" = "team/decisions/index.md" },
     ] },
+  ] },
+  { "Reference" = [
+    { "Overview" = "reference/index.md" },
   ] },
   { "Glossary" = "glossary/index.md" },
   { "Apps" = "apps/index.md" },
