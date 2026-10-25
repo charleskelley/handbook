@@ -1,0 +1,22 @@
+# Datasets the team relies on. One entry per dataset page under docs/data/.
+# Pages render these with macros, e.g. {{ data.datasets.example.freshness }}.
+data:
+  as_of: 2026-10-25
+  datasets:
+    example:
+      name: Example fact table
+      location: warehouse.schema.table
+      grain: one row per <entity> per <period>
+      primary_key: [entity_id, period]
+      source_system: example-source
+      freshness: null          # e.g. "daily by 06:00 UTC"
+      latency: null            # e.g. "T+1"
+      retention: null          # e.g. "25 months"
+      owner: platform-owner
+      page: data/dataset-example.md
+  source_systems:
+    example-source:
+      name: Example source system
+      owner: null
+      cadence: null
+      contact: null

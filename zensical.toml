@@ -14,6 +14,9 @@ nav = [
   { "Business" = [
     { "Overview" = "business/index.md" },
   ] },
+  { "Data" = [
+    { "Overview" = "data/index.md" },
+  ] },
   { "Technology" = [
     { "Overview" = "technology/index.md" },
   ] },
@@ -86,6 +89,7 @@ toggle.name = "Switch to system preference"
 [project.plugins.macros]
 include_yaml = [
   "facts/kpis.yaml",
+  "facts/data.yaml",
   "facts/platform.yaml",
   "facts/team.yaml",
   "facts/apps.yaml",

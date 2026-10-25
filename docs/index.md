@@ -26,6 +26,7 @@ company trying to understand what we do and why.
 ## Sections
 
 - [Business](business/index.md): how the company and its products make money, the strategies that matter, the KPIs and what they mean.
+- [Data](data/index.md): where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it.
 - [Technology](technology/index.md): the platform, environments, local setup, and access.
 - [Modeling](modeling/index.md): model families and their lessons, the features the business relies on, causal maps, postmortems.
 - [Reference](reference/index.md): code style, conventions, best practices, recipes.

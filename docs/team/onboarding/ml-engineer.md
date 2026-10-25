@@ -18,7 +18,8 @@ You are joining as a machine learning engineer. By the end of quarter one you sh
 
 1. [Handbook home](../../index.md): how this reference is organized.
 2. *Add: the economics page for the core product.* Why: everything the team does is judged against this.
-3. *Add: the platform overview.* Why: where the data and compute live.
+3. *Add: the data domain overview for the core product.* Why: the tables everything else is built on, and how to join them.
+4. *Add: the platform overview.* Why: where the data and compute live.
 
 ## By end of month one
 

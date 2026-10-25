@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.1.0 · Draft**
+**Version 0.1.1 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. If a page does not fit a
@@ -44,6 +44,7 @@ linked from here through the app registry.
 |---|---|---|---|
 | Home | `docs/index.md` | What the handbook is, how to use it, the onboarding paths | `landing` |
 | Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `economics`, `strategy`, `kpi` |
+| Data | `docs/data/` | Where the data comes from, how it is organized, what each dataset holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
 | Technology | `docs/technology/` | The platform, environments, local setup, access control | `platform`, `setup-guide`, `access` |
 | Modeling | `docs/modeling/` | Model families in use and their lessons, the features the business relies on, causal maps, postmortems | `model-family`, `feature`, `causal-map`, `lesson` |
 | Reference | `docs/reference/` | Code style and conventions, best practices, task recipes | `convention`, `practice`, `how-to` |
@@ -111,6 +112,30 @@ Purpose: define one business metric. One page per KPI. Required: **Definition**
 **Current level** (rendered from `facts/kpis.yaml`, never typed); **Owner and
 source of truth**; **What moves it**; **Common misreadings**; **Related KPIs**
 (links). Optional: **History** (link to the dashboard in the app registry).
+
+### source-system (Data)
+Purpose: describe one upstream system that produces data the team uses.
+Required: **What it is** (the business process it runs); **What it emits**
+(events or tables, with grain and keys); **How it lands** (pipeline, cadence,
+latency, from `facts/data.yaml`); **Owner and contact**; **Known quirks** (the
+things that bite: timezone, late arrivals, soft deletes, re-statements).
+
+### data-domain (Data)
+Purpose: explain how one area of the warehouse is organized. Required:
+**Scope** (the business area covered); **Model** (a Mermaid entity diagram or a
+linked one, with the grain of each core table); **Canonical tables** (links to
+dataset pages); **How to join** (the keys that work and the ones that do not);
+**Conventions** (naming, partitioning, history handling); **Owner**.
+
+### dataset (Data)
+Purpose: document one table or dataset the team relies on. One page per
+dataset. Required: **What it holds** (one paragraph, plus grain and primary
+key); **Where it comes from** (link to the source-system and the pipeline);
+**Freshness and retention** (from `facts/data.yaml`, never typed); **Columns
+that matter** (the handful a reader needs, with business meaning); **Quality
+checks** (what is tested and what is not); **Known issues**; **Used by**
+(links to KPI, feature, and model pages). Optional: **Access** (link to the
+access page).
 
 ### platform (Technology)
 Purpose: describe one platform component the team depends on. Required:
@@ -215,12 +240,13 @@ syntax not listed above.
 | File | Key | Holds |
 |---|---|---|
 | `facts/kpis.yaml` | `kpis` | `as_of` date and `items`, a mapping of KPI key to name, unit, current level, period, source of truth, owner |
+| `facts/data.yaml` | `data` | `as_of` and `datasets`, a mapping of dataset key to name, location, grain, freshness, latency, retention, owner, source system |
 | `facts/platform.yaml` | `platform` | Environments, quotas, limits, URLs for platform components |
 | `facts/team.yaml` | `team` | Roles and who holds them, team channels, meeting cadence |
 | `facts/apps.yaml` | `apps` | Companion application registry: key to name, url, owner, purpose, status, linked_from |
 
 Reference a fact in a page as `{{ kpis.items.<key>.current }}` or
-`{{ platform.<component>.<field> }}`. Update facts by editing the YAML and
+`{{ platform.<component>.<field> }}` or `{{ data.datasets.<key>.freshness }}`. Update facts by editing the YAML and
 bumping its `as_of`; the pages follow.
 
 ## 8. Review and staleness
