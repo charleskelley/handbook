@@ -55,6 +55,35 @@ operates.
 | Site config and navigation | `zensical.toml` |
 | Checks | `scripts/validate_frontmatter.py`, `scripts/stale_report.py` |
 
+## Which assistant for which page
+
+The templates, the facts rule, and the validator make most pages a structured
+fill-in task, so a small model is enough when the source material is in the
+request and the checker runs in the loop. Judgment-heavy sections need a
+larger model. Suggested split, by page type:
+
+| Tier | Page types | Why |
+|---|---|---|
+| Small (Haiku-class) | dataset, source-system, access, setup-guide, how-to, convention, glossary, app-registry facts, onboarding-path, decision-record from notes, landing | Transcription from a schema dump, runbook, ticket, or notes into a fixed shape. Low judgment, high volume. |
+| Mid (Sonnet-class) | economics, strategy, kpi, method, worked-example, causal-map, lesson, practice, how-we-work, feature | Each has a section that weighs evidence or states what is not known. The default for anything a partner will read. |
+| Large (Opus-class) | Spec changes, cross-page audits, restructuring, staleness reviews touching many owners | Multi-file reasoning where consistency across the handbook matters more than any one page. |
+
+Three things matter more than the tier:
+
+1. **Source material in the request.** The assistant's job is to transcribe and
+   shape, not to know. A dataset page from a column listing and a pipeline
+   config is a small-model task. A dataset page from nothing is a fabrication
+   task at any size.
+2. **The checker in the loop.** Run the validator and the build after every
+   generation and feed the errors back.
+3. **Owner review before `status: active`.** The assistant drafts, the owner
+   reviews and bumps `last_reviewed`. That is the control, not the model.
+
+Before trusting a tier for a page type, test it once: supply a real source with
+two facts deliberately missing and check whether the output leaves two
+`*[unverified: needs source]*` markers or writes two plausible values. If it
+marks, it passes. If it invents, move that type up a tier.
+
 ## Adding a page, in order
 
 1. Choose the type. Copy `templates/<type>.md` to the right section directory.

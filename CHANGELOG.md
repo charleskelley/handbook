@@ -19,6 +19,8 @@ Changes to the handbook specification and template. The format follows
 - Page type `worked-example`: one analysis or model in practice, end to end,
   with what was measured afterward.
 - Worked-examples step in all three onboarding paths.
+- `AGENTS.md`: which assistant tier for which page type, and the
+  missing-facts test before trusting a tier.
 
 ## [0.1.1] - 2026-10-25
 
