@@ -29,7 +29,7 @@ In reading order. Each one depends on the ones before it.
 
 - [Business](business/index.md): how the company and its products make money, the strategies that matter, the KPIs and what they mean. The thing to understand first.
 - [Data](data/index.md): the inputs, and how the business is represented in them. Where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it.
-- [Modeling](modeling/index.md): the methods we use on that data. Model families and their lessons, the features the business relies on, causal maps, postmortems.
+- [Methods](methods/index.md): the analysis methods and model families we use on that data, where each applies, examples in practice, the features the business relies on, causal maps, postmortems.
 - [Technology](technology/index.md): the systems and stack the first three run on. Storage, compute, serving, assistants, access.
 - [Team](team/index.md): who does what, how to reach them, how work enters and leaves the team, onboarding, decision records.
 - [Reference](reference/index.md): lookup. Standards for operation, coding, version control, and the recipes for common tasks.

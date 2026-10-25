@@ -29,5 +29,6 @@ You are joining as a machine learning engineer. By the end of quarter one you sh
 
 ## By end of quarter one
 
-1. *Add: the model-family pages and their lessons.* Why: do not relearn what the team already paid for.
-2. *Add: the decision records.* Why: the reasons behind the current shape of things.
+1. *Add: the method pages and their lessons.* Why: do not relearn what the team already paid for.
+2. *Add: two or three worked examples.* Why: how a question becomes a method, a result, and a measured outcome here.
+3. *Add: the decision records.* Why: the reasons behind the current shape of things.

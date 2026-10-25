@@ -17,8 +17,8 @@ nav = [
   { "Data" = [
     { "Overview" = "data/index.md" },
   ] },
-  { "Modeling" = [
-    { "Overview" = "modeling/index.md" },
+  { "Methods" = [
+    { "Overview" = "methods/index.md" },
   ] },
   { "Technology" = [
     { "Overview" = "technology/index.md" },
