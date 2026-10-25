@@ -3,6 +3,23 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.0] - 2026-10-25
+
+### Changed
+
+- Section renamed Modeling to Methods (`docs/methods/`) to avoid confusion with
+  data modeling in the Data section.
+- Page type `model-family` renamed `method`, widened to any analysis method or
+  model family; template renamed.
+- Navigation order: Business, Data, Methods, Technology, Team, Reference,
+  Glossary, Apps. The home page explains the reading order.
+
+### Added
+
+- Page type `worked-example`: one analysis or model in practice, end to end,
+  with what was measured afterward.
+- Worked-examples step in all three onboarding paths.
+
 ## [0.1.1] - 2026-10-25
 
 ### Added

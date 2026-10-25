@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.1.1 · Draft**
+**Version 0.2.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. If a page does not fit a
@@ -45,7 +45,7 @@ linked from here through the app registry.
 | Home | `docs/index.md` | What the handbook is, how to use it, the onboarding paths | `landing` |
 | Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `economics`, `strategy`, `kpi` |
 | Data | `docs/data/` | Where the data comes from, how it is organized, what each dataset holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
-| Modeling | `docs/modeling/` | Model families in use and their lessons, the features the business relies on, causal maps, postmortems | `model-family`, `feature`, `causal-map`, `lesson` |
+| Methods | `docs/methods/` | The analysis methods and model families used on this data, where each applies, examples in practice, the features the business relies on, causal maps, postmortems | `method`, `worked-example`, `feature`, `causal-map`, `lesson` |
 | Technology | `docs/technology/` | The platform, environments, local setup, access control | `platform`, `setup-guide`, `access` |
 | Team | `docs/team/` | How the team works, onboarding reading paths, decision records | `how-we-work`, `onboarding-path`, `decision-record` |
 | Reference | `docs/reference/` | Code style and conventions, best practices, task recipes | `convention`, `practice`, `how-to` |
@@ -153,26 +153,37 @@ Purpose: explain how to get access to a system or dataset. Required: **What
 this grants**; **Who may have it**; **How to request** (exact steps or link);
 **Approver**; **Review and revocation**.
 
-### model-family (Modeling)
-Purpose: record what the team knows about a class of model as used here.
-Required: **Where we use it** (links to systems or decisions); **When it is the
-right choice**; **When it is not**; **Lessons learned** (dated bullets, each
-with a cause); **Reference implementations** (links). Optional: **Open
-questions**.
+### method (Methods)
+Purpose: one page per algorithm or analysis method as used here, from gradient
+boosting to uplift modeling to a difference-in-differences design. The
+catalogue. Required: **What it is** (one paragraph for a technical reader);
+**Where it applies to our data** (the business questions and datasets it
+suits, linked); **When it is the right choice**; **When it is not**; **Lessons
+learned** (dated bullets, each with a cause); **Reference implementations**
+(links). Optional: **Worked examples** (links); **Open questions**.
 
-### feature (Modeling)
+### worked-example (Methods)
+Purpose: one analysis or model in practice, end to end. The proof. Required:
+**Business question** (linked to the KPI or strategy page); **Data used**
+(linked dataset pages); **Method and why** (linked method page, and the
+alternatives rejected); **Result**; **What was measured afterward** (the
+outcome against its counterfactual, or an honest note that it was not
+measured); **Where it lives** (code, app, or dashboard links). Optional:
+**What we would do differently**.
+
+### feature (Methods)
 Purpose: document a feature the business relies on. Required: **Business
 meaning** (what it represents to a non-technical reader); **Definition and
 source**; **Leakage and timing risks**; **Known failure modes**; **Models that
 use it** (links).
 
-### causal-map (Modeling)
+### causal-map (Methods)
 Purpose: make the team's causal beliefs about an outcome explicit. Required:
 **Outcome** (link to its KPI page); **Diagram** (Mermaid DAG); **Assumptions**
 (each node and edge the team is least sure about); **Evidence** (what has been
 tested, with links); **What we would need to believe to change this**.
 
-### lesson (Modeling)
+### lesson (Methods)
 Purpose: a postmortem or lesson learned from a model, launch, or analysis.
 Required: **What happened**; **Impact**; **Cause**; **What we changed**; **What
 we would do differently**. Blameless by rule: no individual is named as a

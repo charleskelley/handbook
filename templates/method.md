@@ -1,6 +1,6 @@
 ---
-title: <Model family>
-type: model-family
+title: <Method name>
+type: method
 owner: role-or-person
 audience: [ds, mle]
 status: draft
@@ -10,9 +10,15 @@ tags: []
 sources: []
 ---
 
-# <Model family>
+# <Method name>
 
-## Where we use it
+## What it is
+
+One paragraph for a technical reader.
+
+## Where it applies to our data
+
+The business questions and datasets it suits, linked.
 
 ## When it is the right choice
 
@@ -24,5 +30,6 @@ sources: []
 
 ## Reference implementations
 
-## Open questions
+## Worked examples
 
+## Open questions

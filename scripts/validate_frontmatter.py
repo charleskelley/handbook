@@ -17,10 +17,9 @@ from pydantic import BaseModel, ConfigDict, ValidationError, field_validator
 
 PAGE_TYPES = {
     "landing", "economics", "strategy", "kpi", "source-system", "data-domain",
-    "dataset", "platform", "setup-guide",
-    "access", "model-family", "feature", "causal-map", "lesson", "convention",
-    "practice", "how-to", "how-we-work", "onboarding-path", "decision-record",
-    "glossary", "app-registry",
+    "dataset", "method", "worked-example", "feature", "causal-map", "lesson",
+    "platform", "setup-guide", "access", "convention", "practice", "how-to",
+    "how-we-work", "onboarding-path", "decision-record", "glossary", "app-registry",
 }
 AUDIENCES = {"ds", "mle", "de", "analyst", "product", "leadership", "all"}
 TAG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")

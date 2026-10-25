@@ -2,7 +2,7 @@
 
 A template for a data science and machine learning team's internal handbook:
 how the business makes money and what it measures, the technology the team
-runs on, the modeling knowledge it has built up, the conventions it follows,
+runs on, the methods it uses and what it has learned using them, the conventions it follows,
 and how the team works. Markdown in git, rendered to a static site, built so
 that people and automated assistants can keep it current.
 
