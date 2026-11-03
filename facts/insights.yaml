@@ -1,0 +1,25 @@
+# Every insight, inline or freestanding. docs/insights/index.md is generated from
+# this file by a macro loop. `link` is a path under docs/, with #anchor for an
+# inline insight. Add entries like this under a category's items:
+#
+#   record-system-change:
+#     title: Short title
+#     kind: endogenous        # endogenous | exogenous
+#     start: 2026-01-01
+#     end: null               # null if it still applies or was a single moment
+#     link: insights/record-system-change.md
+insights:
+  as_of: 2026-11-02
+  categories:
+    system-changes:
+      name: System changes
+      items: {}
+    measurement-changes:
+      name: Measurement changes
+      items: {}
+    business-actions:
+      name: Business actions
+      items: {}
+    external-events:
+      name: External events
+      items: {}

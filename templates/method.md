@@ -1,5 +1,5 @@
 ---
-title: <Method name>
+title: "<Method name>"
 type: method
 owner: role-or-person
 audience: [ds, mle]
@@ -30,6 +30,23 @@ The business questions and datasets it suits, linked.
 
 ## Reference implementations
 
+## Causal diagram
+
+Optional.
+
 ## Worked examples
 
+Optional. One analysis in practice: the question, the data, the result.
+
+## What was measured afterward
+
+Optional. The outcome against its counterfactual, or an honest note that it was
+not measured.
+
 ## Open questions
+
+Optional.
+
+## Insights
+
+Optional. Events that change how the data is read. Format in spec section 6.

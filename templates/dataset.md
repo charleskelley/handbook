@@ -1,5 +1,5 @@
 ---
-title: <Dataset name>
+title: "<Dataset name>"
 type: dataset
 owner: role-or-person
 audience: [ds, mle, de, analyst]
@@ -19,7 +19,7 @@ Location: `{{ data.datasets.example.location }}`.
 
 ## Where it comes from
 
-Source system and pipeline, linked.
+Pulled from {{ data.datasets.example.source_system }}. System of record: {{ data.datasets.example.system_of_record }}. Pipeline, linked.
 
 ## Freshness and retention
 
@@ -37,9 +37,21 @@ What is tested and what is not.
 
 ## Known issues
 
+Current defects.
+
 ## Used by
 
-Links to KPI, feature, and model pages.
+Links to KPI and method pages.
 
 ## Access
+
+Optional. Link to the how-to.
+
+## Quirks
+
+Optional. Structural and timeless.
+
+## Insights
+
+Optional. Events that change how the data is read. Format in spec section 6.
 

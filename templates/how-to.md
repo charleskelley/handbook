@@ -1,5 +1,5 @@
 ---
-title: How to <task>
+title: "How to <task>"
 type: how-to
 owner: role-or-person
 audience: [ds, mle, de]
@@ -21,4 +21,12 @@ sources: []
 ## Verify
 
 ## See also
+
+## Troubleshooting
+
+Optional.
+
+## Verified on
+
+Optional, for setup recipes. Date and OS.
 

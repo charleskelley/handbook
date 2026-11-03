@@ -1,5 +1,5 @@
 ---
-title: <KPI name>
+title: "<KPI name>"
 type: kpi
 owner: role-or-person
 audience: [all]
@@ -22,12 +22,12 @@ Exact, with the source tables or systems named.
 
 ## Current level
 
-**{{ kpis.items.example.current }} {{ kpis.items.example.unit }}**, {{ kpis.items.example.period }}, as of {{ kpis.as_of }}.
-Source of truth: {{ kpis.items.example.source_of_truth }}.
+**{{ kpis["items"].example.current }} {{ kpis["items"].example.unit }}**, {{ kpis["items"].example.period }}, as of {{ kpis.as_of }}.
+Source of truth: {{ kpis["items"].example.source_of_truth }}.
 
 ## Owner and source of truth
 
-Owner: {{ kpis.items.example.owner }}.
+Owner: {{ kpis["items"].example.owner }}.
 
 ## What moves it
 
@@ -35,5 +35,19 @@ Owner: {{ kpis.items.example.owner }}.
 
 ## Related KPIs
 
+## Causal diagram
+
+Optional. A Mermaid DAG of what the team believes moves this.
+
+## What we would need to believe to change this
+
+Optional.
+
 ## History
+
+Optional. Link to the dashboard on the Apps page.
+
+## Insights
+
+Optional. Events that change how the data is read. Format in spec section 6.
 

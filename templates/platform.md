@@ -1,5 +1,5 @@
 ---
-title: <Component name>
+title: "<Component name>"
 type: platform
 owner: role-or-person
 audience: [ds, mle, de]
@@ -34,4 +34,10 @@ Owner: {{ platform.components.warehouse.owner }}. Support: {{ platform.component
 ## Runbooks
 
 ## Known issues
+
+Optional.
+
+## Insights
+
+Optional. Events that change how the data is read. Format in spec section 6.
 

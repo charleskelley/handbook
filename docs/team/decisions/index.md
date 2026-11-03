@@ -1,6 +1,6 @@
 ---
 title: Decision records
-type: landing
+type: general
 owner: ds-lead
 audience: [all]
 status: draft

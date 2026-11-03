@@ -1,6 +1,6 @@
 ---
 title: Handbook
-type: landing
+type: general
 owner: ds-lead
 audience: [all]
 status: draft
@@ -12,16 +12,14 @@ review_cadence: 180d
 
 This is the team's single reference for how we work: how the business makes
 money and what it measures, the technology we run on, the methods we use and what we have
-learned using them here, the conventions we follow, and how the team itself
-operates. It is written for three readers at once: someone in their first
+learned using them here, and how the team itself operates. It is written for three readers at once: someone in their first
 month, a team member looking something up, and a partner elsewhere in the
 company trying to understand what we do and why.
 
 ## Start here
 
-- New data scientist: [onboarding path](team/onboarding/data-scientist.md)
-- New machine learning engineer: [onboarding path](team/onboarding/ml-engineer.md)
-- Cross-functional partner: [onboarding path](team/onboarding/partner.md)
+- Joining the team: [onboarding guide](team/onboarding.md)
+- Working with the team: [how we work](team/how-we-work.md)
 
 ## Sections
 
@@ -29,10 +27,10 @@ In reading order. Each one depends on the ones before it.
 
 - [Business](business/index.md): how the company and its products make money, the strategies that matter, the KPIs and what they mean. The thing to understand first.
 - [Data](data/index.md): the inputs, and how the business is represented in them. Where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it.
-- [Methods](methods/index.md): the analysis methods and model families we use on that data, where each applies, examples in practice, the features the business relies on, causal maps, postmortems.
-- [Technology](technology/index.md): the systems and stack the first three run on. Storage, compute, serving, assistants, access.
-- [Team](team/index.md): who does what, how to reach them, how work enters and leaves the team, onboarding, decision records.
-- [Reference](reference/index.md): lookup. Standards for operation, coding, version control, and the recipes for common tasks.
+- [Methods](methods/index.md): how we work with that data. The analysis methods and model families we use, where each applies, and our development practices.
+- [Technology](technology/index.md): what we work with. Platforms, environments, development tools, setup, and access.
+- [Team](team/index.md): how to work with us, onboarding, and decision records.
+- [Insights](insights/index.md): the events and circumstances that change how the data should be read.
 - [Glossary](glossary/index.md): business and working terms and acronyms, defined once.
 - [Apps](apps/index.md): links to the dashboards and companion applications that matter.
 

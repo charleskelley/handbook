@@ -1,5 +1,5 @@
 # Business KPIs. One entry per metric page under docs/business/.
-# Pages render these values with macros, e.g. {{ kpis.items.example.current }}.
+# Pages render these values with macros, e.g. {{ kpis["items"].example.current }}.
 # Update here, bump as_of, and every page follows.
 kpis:
   as_of: 2026-10-24

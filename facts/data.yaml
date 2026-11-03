@@ -1,4 +1,5 @@
-# Datasets the team relies on. One entry per dataset page under docs/data/.
+# Tables the team relies on. One entry per table. `page` is its dataset page, or
+# its domain page if it has no page of its own.
 # Pages render these with macros, e.g. {{ data.datasets.example.freshness }}.
 data:
   as_of: 2026-10-25
@@ -8,7 +9,8 @@ data:
       location: warehouse.schema.table
       grain: one row per <entity> per <period>
       primary_key: [entity_id, period]
-      source_system: example-source
+      source_system: example-source   # where it is pulled from
+      system_of_record: example-source   # authoritative system, may differ
       freshness: null          # e.g. "daily by 06:00 UTC"
       latency: null            # e.g. "T+1"
       retention: null          # e.g. "25 months"

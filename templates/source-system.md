@@ -1,5 +1,5 @@
 ---
-title: <Source system name>
+title: "<Source system name>"
 type: source-system
 owner: role-or-person
 audience: [ds, mle, de]
@@ -16,6 +16,11 @@ sources: []
 
 The business process this system runs.
 
+## System of record for
+
+The kinds of data this system is authoritative for, and where analysts actually
+pull each one if elsewhere.
+
 ## What it emits
 
 Events or tables, with grain and keys.
@@ -28,7 +33,19 @@ Pipeline, cadence {{ data.source_systems['example-source'].cadence }}, latency, 
 
 Owner: {{ data.source_systems['example-source'].owner }}.
 
-## Known quirks
+## What's here
 
-Timezones, late arrivals, soft deletes, re-statements.
+Keep this section only on a system directory's `index.md`. The map of domains,
+single tables, and carveouts.
+
+- [Domain](domain.md): one line on what it covers.
+
+## Quirks
+
+Optional. Structural and timeless: timezones, late arrivals, soft deletes,
+re-statements, fields that default to one value.
+
+## Insights
+
+Optional. Events that change how the data is read. Format in spec section 6.
 

@@ -1,6 +1,6 @@
 ---
 title: Methods
-type: landing
+type: general
 owner: ds-lead
 audience: [ds, mle, analyst]
 status: draft
@@ -10,18 +10,17 @@ review_cadence: 180d
 
 # Methods
 
-The analysis methods and model families the team uses on this company's data,
-where each one applies, when it is the wrong choice, and what has been learned
-using it here. Examples of methods in practice, the features the business
-relies on, and the causal beliefs behind each outcome the team tries to move.
+How the team works with this company's data: the analysis methods and model
+families it uses, where each one applies, when it is the wrong choice, and what
+has been learned using it here. Development practices are a part of this.
 
-Page types here: **method** (one per algorithm or analysis method, the
-catalogue), **worked-example** (one per analysis or model in practice, the
-proof), **feature** (one per feature the business relies on), **causal-map**
-(one per outcome, the team's beliefs about what moves it), **lesson**
-(postmortems).
+Page types here: **method** (one per algorithm or analysis method), with worked
+examples kept on the pages where they help.
 
 ## Pages
 
-*No pages yet. Start with a causal map for the outcome the team is most often
-asked about, then the method pages and worked examples that act on it.*
+- [Development practices](development/index.md): style guides, conventions, and
+  development how-tos.
+
+*No method pages yet. Start with the methods used on the outcome the team is most
+often asked about.*

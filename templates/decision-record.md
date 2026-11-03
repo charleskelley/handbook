@@ -1,5 +1,5 @@
 ---
-title: DR-NNNN: <Decision in a few words>
+title: "DR-NNNN: <Decision in a few words>"
 type: decision-record
 owner: role-or-person
 audience: [all]

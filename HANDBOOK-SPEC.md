@@ -1,10 +1,10 @@
 # Handbook specification
 
-**Version 0.2.0 · Draft**
+**Version 0.3.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
-assistants follow it when they add or change a page. If a page does not fit a
-page type defined here, the spec is changed first and the page second.
+assistants follow it when they add or change a page. A page that does not fit
+a strict page type defined here is a `general` page.
 
 ## 1. Purpose
 
@@ -18,7 +18,7 @@ understand what the team does and why.
 
 It is a static website generated from Markdown held in a git repository.
 Interactive material (dashboards, apps, notebooks) lives elsewhere and is
-linked from here through the app registry.
+linked from here through the Apps page.
 
 ## 2. Principles
 
@@ -31,8 +31,10 @@ linked from here through the app registry.
 3. **Every page has an owner and a review date.** Front matter records who is
    accountable and when the page was last confirmed correct. Pages past their
    review cadence are reported by CI.
-4. **Every page has a type.** The type fixes the required sections, so a reader
-   knows what to expect and an assistant knows what to write.
+4. **Strict where it is a lookup, free where it is judgment.** Pages that repeat
+   and get looked up have a strict type with required sections, so a reader
+   knows what to expect and an assistant knows what to write. Everything else is
+   a `general` page and evolves to fit the business.
 5. **Unverified is labeled.** A claim that has not been confirmed against a
    source is marked as such in the text, never silently presented as fact.
 6. **Small pages, strong links.** One topic per page. Prefer linking to an
@@ -42,18 +44,32 @@ linked from here through the app registry.
 
 | Section | Directory | What lives here | Page types |
 |---|---|---|---|
-| Home | `docs/index.md` | What the handbook is, how to use it, the onboarding paths | `landing` |
-| Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `economics`, `strategy`, `kpi` |
-| Data | `docs/data/` | Where the data comes from, how it is organized, what each dataset holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
-| Methods | `docs/methods/` | The analysis methods and model families used on this data, where each applies, examples in practice, the features the business relies on, causal maps, postmortems | `method`, `worked-example`, `feature`, `causal-map`, `lesson` |
-| Technology | `docs/technology/` | The platform, environments, local setup, access control | `platform`, `setup-guide`, `access` |
-| Team | `docs/team/` | How the team works, onboarding reading paths, decision records | `how-we-work`, `onboarding-path`, `decision-record` |
-| Reference | `docs/reference/` | Code style and conventions, best practices, task recipes | `convention`, `practice`, `how-to` |
-| Glossary | `docs/glossary/` | Terms the team and its partners use, defined once | `glossary` |
-| Apps | `docs/apps/` | Registry of companion applications, generated from `facts/apps.yaml` | `app-registry` |
+| Home | `docs/index.md` | What the handbook is, how to use it, where each reader starts | `general` |
+| Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `kpi`, `general` |
+| Data | `docs/data/` | The systems data comes from, how it is organized into domains, what each table holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
+| Methods | `docs/methods/` | How the team works with data: analysis methods and model families at the top level, development practices under `development/` | `method`, `how-to`, `general` |
+| Technology | `docs/technology/` | What the team works with: platforms, environments, development tools, setup and access recipes | `platform`, `how-to`, `general` |
+| Team | `docs/team/` | How the team works with partners, the onboarding guide, decision records | `decision-record`, `general` |
+| Insights | `docs/insights/` | The index of every insight, and freestanding insight writeups | `insight`, `general` |
+| Glossary | `docs/glossary/` | Terms the team and its partners use, defined once, on one page | `general` |
+| Apps | `docs/apps/` | Registry of companion applications, generated from `facts/apps.yaml` | `general` |
 
-Each section directory has an `index.md` of type `landing` that says what the
-section holds and lists its pages.
+Each section directory has an `index.md` of type `general` that says what the
+section holds and lists its pages. Index pages carry no facts and no numbers.
+The exception is a system directory under Data, whose `index.md` is that
+system's `source-system` page.
+
+### Data layout
+
+Each system with many tables gets a directory named for what people call it,
+for example `docs/data/bigquery/`. Its `index.md` is the system's overview and
+the map of everything below it. Subpages are domains, organized by business
+concern, or dataset pages for single large tables that span domains. Special
+sources that fit neither are carved out and noted in the `index.md`. A smaller
+system is a single `source-system` page, `docs/data/<system>.md`.
+
+A Data page says what a system holds and what it means. A platform page says how
+the system runs and what its quotas are. A system can have both.
 
 ## 4. Front matter
 
@@ -83,147 +99,122 @@ Rules:
   top pointing to the replacement.
 - `owner` is a role where possible (`ds-lead`, `platform-owner`) so pages
   survive staff changes.
+- Quote `title` when it contains a colon (every decision record does), or YAML
+  rejects it. The templates quote every title.
 
 ## 5. Page types
 
-Each type lists its purpose and its required sections, in order. Optional
-sections are marked. Templates for each type are in `templates/`.
+There are nine strict types, each with a template in `templates/`, and one free
+type. Each strict type lists its purpose and its required sections, in order.
+The validator enforces the required sections. Optional sections are named here
+and may be added after the required ones.
 
-### landing
-Purpose: orient the reader to a section. Required: one paragraph on what the
-section holds; a list of pages with one line each. No facts, no numbers.
+Two optional sections apply to pages about data:
 
-### economics (Business)
-Purpose: explain how the company or a product makes money. Required:
-**Revenue mechanics** (who pays, for what, when); **Cost structure** (the main
-costs and which ones the team's work touches); **Unit economics** (the margin
-logic in one paragraph, numbers from facts); **Where models act** (the
-decisions in this flow that models or analytics influence); **Sources**.
+- **Quirks** record structural, timeless properties of a system or table:
+  timezones, soft deletes, re-statements, or a dropdown that defaults to one
+  value. Allowed on `source-system`, `data-domain`, and `dataset` pages.
+- **Insights** record events or circumstances that change how data is read. See
+  [insight](#insight-insights). Allowed on any strict page.
 
-### strategy (Business)
-Purpose: record a corporate or product strategy the team must understand.
-Required: **Objective**; **Horizon**; **What success looks like** (the KPIs,
-linked); **How this team contributes**; **What it changes about our priorities**;
-**Sources**. Optional: **Risks**.
+The test between them: if interpretation differs before and after a date, it is
+an insight. If it has always been true, it is a quirk.
+
+### general
+Purpose: anything that does not repeat often enough to need a shape, including
+section indexes, the glossary, the Apps page, how-we-work, and business pages
+such as how a product makes money. Front matter only, no required sections.
+Organic pages may become a strict type later if a pattern emerges.
 
 ### kpi (Business)
 Purpose: define one business metric. One page per KPI. Required: **Definition**
 (plain words); **Formula** (exact, with the source tables or systems);
 **Current level** (rendered from `facts/kpis.yaml`, never typed); **Owner and
 source of truth**; **What moves it**; **Common misreadings**; **Related KPIs**
-(links). Optional: **History** (link to the dashboard in the app registry).
+(links). Optional: **Causal diagram** (Mermaid DAG); **What we would need to
+believe to change this**; **History** (link to the dashboard on the Apps page);
+**Insights**.
 
 ### source-system (Data)
-Purpose: describe one upstream system that produces data the team uses.
-Required: **What it is** (the business process it runs); **What it emits**
-(events or tables, with grain and keys); **How it lands** (pipeline, cadence,
-latency, from `facts/data.yaml`); **Owner and contact**; **Known quirks** (the
-things that bite: timezone, late arrivals, soft deletes, re-statements).
+Purpose: describe one system data comes from. Every system in the chain gets a
+page, including the warehouse and the systems that feed it. Required: **What it
+is** (the business process it runs); **System of record for** (the kinds of data
+this system is authoritative for, and where analysts actually pull each one if
+elsewhere); **What it emits** (events or tables, with grain and keys); **How it
+lands** (pipeline, cadence, latency, from `facts/data.yaml`); **Owner and
+contact**. Required on a system directory's `index.md`: **What's here** (the map
+of domains, single tables, and carveouts). Optional: **Quirks**; **Insights**.
+
+System of record is a relationship between a system and a kind of data, not a
+kind of system. A warehouse may be the system of record for marketing data while
+a document store is the system of record for web data that analysts pull from
+the warehouse.
 
 ### data-domain (Data)
-Purpose: explain how one area of the warehouse is organized. Required:
-**Scope** (the business area covered); **Model** (a Mermaid entity diagram or a
-linked one, with the grain of each core table); **Canonical tables** (links to
-dataset pages); **How to join** (the keys that work and the ones that do not);
-**Conventions** (naming, partitioning, history handling); **Owner**.
+Purpose: explain one business domain within a system. Required: **Scope** (the
+business area covered); **Model** (a Mermaid entity diagram or a linked one, with
+the grain of each core table and the domain's semantic model); **Canonical
+tables** (the tables, described on this page); **How to join** (the keys that
+work and the ones that do not); **Conventions** (naming, partitioning, history
+handling); **Owner**. Optional: **Quirks**; **Insights**.
+
+Tables start on the domain page. A table gets its own `dataset` page when it
+outgrows the domain page.
 
 ### dataset (Data)
-Purpose: document one table or dataset the team relies on. One page per
-dataset. Required: **What it holds** (one paragraph, plus grain and primary
-key); **Where it comes from** (link to the source-system and the pipeline);
-**Freshness and retention** (from `facts/data.yaml`, never typed); **Columns
-that matter** (the handful a reader needs, with business meaning); **Quality
-checks** (what is tested and what is not); **Known issues**; **Used by**
-(links to KPI, feature, and model pages). Optional: **Access** (link to the
-access page).
+Purpose: document one table or dataset that outgrew its domain page, or a large
+table that spans domains. Required: **What it holds** (one paragraph, plus grain
+and primary key); **Where it comes from** (the system it is pulled from, its
+system of record, and the pipeline); **Freshness and retention** (from
+`facts/data.yaml`, never typed); **Columns that matter** (the handful a reader
+needs, with business meaning); **Quality checks** (what is tested and what is
+not); **Known issues** (current defects); **Used by** (links to KPI and method
+pages). Optional: **Access** (link to the how-to); **Quirks**; **Insights**.
+
+### method (Methods)
+Purpose: one page per algorithm or analysis method as used here, from gradient
+boosting to uplift modeling to a difference-in-differences design. Required:
+**What it is** (one paragraph for a technical reader); **Where it applies to our
+data** (the business questions and datasets it suits, linked); **When it is the
+right choice**; **When it is not**; **Lessons learned** (dated bullets, each with
+a cause); **Reference implementations** (links). Optional: **Causal diagram**;
+**Worked examples**; **What was measured afterward** (the outcome against its
+counterfactual, or an honest note that it was not measured); **Open questions**;
+**Insights**.
 
 ### platform (Technology)
 Purpose: describe one platform component the team depends on. Required:
 **What it is for**; **Architecture** (a Mermaid diagram or a linked one);
 **How we use it**; **Limits and quotas** (from `facts/platform.yaml`); **Owner
-and support path**; **Runbooks** (links). Optional: **Known issues**.
+and support path**; **Runbooks** (links). Optional: **Known issues**;
+**Insights**.
 
-### setup-guide (Technology)
-Purpose: get a machine or environment working. Required: **Prerequisites**;
-**Steps** (numbered, each verifiable); **Verify** (how to know it worked);
-**Troubleshooting**; **Verified on** (date and OS, from front matter and text).
-
-### access (Technology)
-Purpose: explain how to get access to a system or dataset. Required: **What
-this grants**; **Who may have it**; **How to request** (exact steps or link);
-**Approver**; **Review and revocation**.
-
-### method (Methods)
-Purpose: one page per algorithm or analysis method as used here, from gradient
-boosting to uplift modeling to a difference-in-differences design. The
-catalogue. Required: **What it is** (one paragraph for a technical reader);
-**Where it applies to our data** (the business questions and datasets it
-suits, linked); **When it is the right choice**; **When it is not**; **Lessons
-learned** (dated bullets, each with a cause); **Reference implementations**
-(links). Optional: **Worked examples** (links); **Open questions**.
-
-### worked-example (Methods)
-Purpose: one analysis or model in practice, end to end. The proof. Required:
-**Business question** (linked to the KPI or strategy page); **Data used**
-(linked dataset pages); **Method and why** (linked method page, and the
-alternatives rejected); **Result**; **What was measured afterward** (the
-outcome against its counterfactual, or an honest note that it was not
-measured); **Where it lives** (code, app, or dashboard links). Optional:
-**What we would do differently**.
-
-### feature (Methods)
-Purpose: document a feature the business relies on. Required: **Business
-meaning** (what it represents to a non-technical reader); **Definition and
-source**; **Leakage and timing risks**; **Known failure modes**; **Models that
-use it** (links).
-
-### causal-map (Methods)
-Purpose: make the team's causal beliefs about an outcome explicit. Required:
-**Outcome** (link to its KPI page); **Diagram** (Mermaid DAG); **Assumptions**
-(each node and edge the team is least sure about); **Evidence** (what has been
-tested, with links); **What we would need to believe to change this**.
-
-### lesson (Methods)
-Purpose: a postmortem or lesson learned from a model, launch, or analysis.
-Required: **What happened**; **Impact**; **Cause**; **What we changed**; **What
-we would do differently**. Blameless by rule: no individual is named as a
-cause.
-
-### convention (Reference)
-Purpose: a code style or repository convention. Required: **Rule**; **Why**;
-**Example** (do and don't); **Enforcement** (linter, review, or honor system).
-
-### practice (Reference)
-Purpose: a best practice with judgment in it. Required: **When this applies**;
-**The practice**; **Why**; **Anti-patterns**; **Examples** (links).
-
-### how-to (Reference)
-Purpose: a task recipe. Required: **Goal**; **Steps**; **Verify**; **See also**.
-
-### how-we-work (Team)
-Purpose: describe a ritual, role, or working agreement. Required: **What**;
-**Who**; **When**; **Why**; **How to change this**.
-
-### onboarding-path (Team)
-Purpose: a curated reading order for one audience. Required: **Who this is
-for**; **By end of week one**; **By end of month one**; **By end of quarter
-one**; each a numbered list of links with one line on why. No new content; only
-links.
+### how-to (Methods, Technology)
+Purpose: a task recipe, kept beside its subject. Tool setup and access requests
+sit under Technology. Tasks such as shipping a model sit under Methods. Required:
+**Goal**; **Steps** (numbered, each verifiable); **Verify**; **See also**.
+Optional: **Troubleshooting**; **Verified on** (date and OS, for setup recipes);
+**Insights**.
 
 ### decision-record (Team)
 Purpose: record a decision the team made and why. One file per decision, named
 `DR-NNNN-short-slug.md`. Required: **Context**; **Decision**; **Alternatives
 considered**; **Consequences**; **Status** (proposed, accepted, superseded by
 DR-NNNN). Decision records are never edited after acceptance except to change
-status.
+status. A decision record says why a change was made. An insight says what the
+change did to the data.
 
-### glossary
-Purpose: define terms. A single page using definition lists, alphabetized. Each
-term: one-sentence definition, optional link to the page that explains it.
+### insight (Insights)
+Purpose: a freestanding writeup of an endogenous or exogenous event or
+circumstance that changes how data is interpreted, such as a record system
+change or a market shock. Required: **What is true**; **When it applied**; **How
+we know**; **What it affects** (links); **Does it still hold**. Blameless by
+rule: no individual is named as a cause.
 
-### app-registry
-Purpose: list every companion application. Generated from `facts/apps.yaml` by
-a macro loop. Not hand-edited.
+Small insights are inline and use the format in section 6. A large insight gets
+this page, and each affected page carries an inline note linking to it. Every
+insight, inline or freestanding, has an entry in `facts/insights.yaml`, and
+`docs/insights/index.md` is generated from that file.
 
 ## 6. Allowed Markdown
 
@@ -237,8 +228,23 @@ Pages may use CommonMark plus the following, and nothing else:
 - Snippets (`--8<-- "path"`) for shared fragments kept under `includes/`.
 - Macros `{{ ... }}` and `{% ... %}` that reference variables loaded from
   `facts/*.yaml`. No arithmetic or logic beyond loops and attribute access.
+- Explicit heading anchors (`{: #slug }`), used to give inline insights a stable
+  link target. The colon is required, because `{#` opens a macro comment.
 - Raw HTML only for an `<iframe>` on an Apps page, and only through the
   `includes/embed.md` snippet.
+
+An inline insight is an H3 under an `## Insights` heading, with an anchor,
+followed by its date, what happened, the effect on the data, and a link to the
+full writeup if there is one:
+
+```markdown
+## Insights
+
+### Short title {: #short-slug }
+
+YYYY-MM-DD to YYYY-MM-DD. What happened, and how it changes reading the data.
+[Full writeup](../insights/short-slug.md).
+```
 
 Not allowed: inline HTML elsewhere, images without alt text, absolute links to
 pages inside this site, emoji shortcodes in headings, any renderer-specific
@@ -251,12 +257,19 @@ syntax not listed above.
 | File | Key | Holds |
 |---|---|---|
 | `facts/kpis.yaml` | `kpis` | `as_of` date and `items`, a mapping of KPI key to name, unit, current level, period, source of truth, owner |
-| `facts/data.yaml` | `data` | `as_of` and `datasets`, a mapping of dataset key to name, location, grain, freshness, latency, retention, owner, source system |
+| `facts/data.yaml` | `data` | `as_of` and `datasets`, a mapping of dataset key to name, location, grain, freshness, latency, retention, owner, source system (where it is pulled from), system of record |
 | `facts/platform.yaml` | `platform` | Environments, quotas, limits, URLs for platform components |
 | `facts/team.yaml` | `team` | Roles and who holds them, team channels, meeting cadence |
 | `facts/apps.yaml` | `apps` | Companion application registry: key to name, url, owner, purpose, status, linked_from |
+| `facts/insights.yaml` | `insights` | `as_of` and `categories`, a mapping of category to name and `items`. Each item has title, kind (endogenous or exogenous), start, optional end, and link (a path under `docs/`, with an anchor for inline insights) |
 
-Reference a fact in a page as `{{ kpis.items.<key>.current }}` or
+Mappings named `items` need the bracket form, `kpis["items"]`, because
+`kpis.items` resolves to a built-in method.
+
+Entries whose key starts with `example` are placeholders. They are exempt from
+the link checks, and a warning is printed if a page under `docs/` uses one.
+
+Reference a fact in a page as `{{ kpis["items"].<key>.current }}` or
 `{{ platform.<component>.<field> }}` or `{{ data.datasets.<key>.freshness }}`. Update facts by editing the YAML and
 bumping its `as_of`; the pages follow.
 

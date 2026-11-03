@@ -2,8 +2,8 @@
 
 A template for a data science and machine learning team's internal handbook:
 how the business makes money and what it measures, the technology the team
-runs on, the methods it uses and what it has learned using them, the conventions it follows,
-and how the team works. Markdown in git, rendered to a static site, built so
+runs on, the methods it uses and what it has learned using them, and how the
+team works. Markdown in git, rendered to a static site, built so
 that people and automated assistants can keep it current.
 
 This repository is the empty, employer-neutral shape. Fork it inside your
@@ -36,7 +36,8 @@ Three documents define how this handbook is written:
   how facts are kept out of prose.
 - **[`AGENTS.md`](AGENTS.md)**: the short rule set an automated assistant (or a
   new contributor) follows when adding or editing a page.
-- **`templates/`**: one Markdown template per page type. Copy, fill, link.
+- **`templates/`**: one Markdown template per strict page type. Copy, fill, link.
+  Pages that fit no strict type are `general` and have no template.
 
 Anything that changes (a KPI level, a quota, a URL, who owns what) lives in
 `facts/*.yaml` and is rendered into pages with macros, so a number appears once

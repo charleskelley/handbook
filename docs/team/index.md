@@ -1,6 +1,6 @@
 ---
 title: Team
-type: landing
+type: general
 owner: ds-lead
 audience: [all]
 status: draft
@@ -10,16 +10,13 @@ review_cadence: 180d
 
 # Team
 
-How the team works: rituals, roles, and working agreements; the onboarding
-reading paths for each kind of newcomer; and the record of decisions the team
-has made and why.
+How the team works with partners, how newcomers get started, and the record of
+decisions the team has made and why.
 
-Page types here: **how-we-work**, **onboarding-path**, **decision-record**.
+Page types here: **decision-record**.
 
 ## Pages
 
-- [Onboarding paths](onboarding/index.md)
-- [Decision records](decisions/index.md)
-
-*How-we-work pages to add: planning, review, on-call or support rotation,
-communication norms.*
+- [How we work](how-we-work.md): what the team does and how to work with it.
+- [Onboarding](onboarding.md): where a new team member starts.
+- [Decision records](decisions/index.md): what was decided and why.

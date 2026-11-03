@@ -8,8 +8,7 @@ the short version you must follow.
 
 A team handbook: Markdown under `docs/`, facts under `facts/`, rendered to a
 static site with Zensical. Pages describe how the business works, the
-technology the team runs on, the methods it uses, conventions, and how the team
-operates.
+technology the team runs on, the methods it uses, and how the team operates.
 
 ## Rules
 
@@ -20,10 +19,10 @@ operates.
 2. **Facts go in YAML, not prose.** Anything that can change (a KPI level, a
    quota, a team role, an app URL) is added to the right file under `facts/` and
    referenced in the page with a macro, for example
-   `{{ kpis.items.<key>.current }}`. Do not type the value into the Markdown.
-3. **Every page has a type.** Pick one from `HANDBOOK-SPEC.md` section 5, copy
-   its template from `templates/`, and keep the required sections in order.
-   If no type fits, stop and propose a spec change instead of improvising.
+   `{{ kpis["items"].<key>.current }}`. Do not type the value into the Markdown.
+3. **Every page has a type.** If a strict type from `HANDBOOK-SPEC.md` section 5
+   fits, copy its template from `templates/` and keep the required sections in
+   order. If none fits, use `type: general`, which has no required sections.
 4. **Front matter is complete and valid.** Run
    `uv run --group docs python scripts/validate_frontmatter.py` before you
    finish. Fix every error.
@@ -38,7 +37,7 @@ operates.
    it with a relative path. One topic per page.
 8. **Decision records are append-only.** Never edit an accepted `DR-` file
    except to change its `Status` line.
-9. **Blameless.** Lessons and decision records name causes and systems, never
+9. **Blameless.** Insights and decision records name causes and systems, never
    individuals as the cause.
 10. **Build before you finish.** `uv run --group docs zensical build` must
     succeed with no warnings you introduced.
@@ -50,7 +49,7 @@ operates.
 | Page type definitions and required sections | `HANDBOOK-SPEC.md` section 5 |
 | Front matter schema | `HANDBOOK-SPEC.md` section 4 |
 | Page templates | `templates/<type>.md` |
-| Facts | `facts/kpis.yaml`, `facts/platform.yaml`, `facts/team.yaml`, `facts/apps.yaml` |
+| Facts | `facts/kpis.yaml`, `facts/data.yaml`, `facts/platform.yaml`, `facts/team.yaml`, `facts/apps.yaml`, `facts/insights.yaml` |
 | Shared fragments | `includes/` |
 | Site config and navigation | `zensical.toml` |
 | Checks | `scripts/validate_frontmatter.py`, `scripts/stale_report.py` |
@@ -64,8 +63,8 @@ larger model. Suggested split, by page type:
 
 | Tier | Page types | Why |
 |---|---|---|
-| Small (Haiku-class) | dataset, source-system, access, setup-guide, how-to, convention, glossary, app-registry facts, onboarding-path, decision-record from notes, landing | Transcription from a schema dump, runbook, ticket, or notes into a fixed shape. Low judgment, high volume. |
-| Mid (Sonnet-class) | economics, strategy, kpi, method, worked-example, causal-map, lesson, practice, how-we-work, feature | Each has a section that weighs evidence or states what is not known. The default for anything a partner will read. |
+| Small (Haiku-class) | dataset, source-system, data-domain, platform, how-to, decision-record from notes, section indexes, glossary, facts entries | Transcription from a schema dump, runbook, ticket, or notes into a fixed shape. Low judgment, high volume. |
+| Mid (Sonnet-class) | kpi, method, insight, general pages such as business pages and how-we-work | Each has a section that weighs evidence or states what is not known. The default for anything a partner will read. |
 | Large (Opus-class) | Spec changes, cross-page audits, restructuring, staleness reviews touching many owners | Multi-file reasoning where consistency across the handbook matters more than any one page. |
 
 Three things matter more than the tier:
@@ -86,9 +85,11 @@ marks, it passes. If it invents, move that type up a tier.
 
 ## Adding a page, in order
 
-1. Choose the type. Copy `templates/<type>.md` to the right section directory.
+1. Choose the type. Copy `templates/<type>.md` to the right section directory,
+   or start from the front matter alone for a `general` page.
 2. Fill the front matter. `status: draft` until an owner reviews it.
-3. Write the required sections. Move any changeable value into `facts/`.
+3. Write the required sections. Move any changeable value into `facts/`. Add any
+   insight to `facts/insights.yaml`.
 4. Add the page to `nav` in `zensical.toml` and to its section `index.md`.
 5. Run the validator and the build.
 6. In your summary, list every `unverified` marker you left behind.

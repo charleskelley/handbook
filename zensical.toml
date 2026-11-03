@@ -19,25 +19,25 @@ nav = [
   ] },
   { "Methods" = [
     { "Overview" = "methods/index.md" },
+    { "Development" = [
+      { "Overview" = "methods/development/index.md" },
+      { "Style guides" = "methods/development/style-guide.md" },
+      { "Conventions" = "methods/development/conventions.md" },
+    ] },
   ] },
   { "Technology" = [
     { "Overview" = "technology/index.md" },
+    { "Development tools" = "technology/tools.md" },
   ] },
   { "Team" = [
     { "Overview" = "team/index.md" },
-    { "Onboarding" = [
-      { "Overview" = "team/onboarding/index.md" },
-      { "New data scientist" = "team/onboarding/data-scientist.md" },
-      { "New ML engineer" = "team/onboarding/ml-engineer.md" },
-      { "Cross-functional partner" = "team/onboarding/partner.md" },
-    ] },
+    { "How we work" = "team/how-we-work.md" },
+    { "Onboarding" = "team/onboarding.md" },
     { "Decisions" = [
       { "Overview" = "team/decisions/index.md" },
     ] },
   ] },
-  { "Reference" = [
-    { "Overview" = "reference/index.md" },
-  ] },
+  { "Insights" = "insights/index.md" },
   { "Glossary" = "glossary/index.md" },
   { "Apps" = "apps/index.md" },
 ]
@@ -93,6 +93,7 @@ include_yaml = [
   "facts/platform.yaml",
   "facts/team.yaml",
   "facts/apps.yaml",
+  "facts/insights.yaml",
 ]
 
 [project.plugins.tags]

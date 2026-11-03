@@ -22,7 +22,7 @@ team:
   rituals:
     planning:
       cadence: null
-      page: team/how-we-work-planning.md
+      page: team/how-we-work.md
     review:
       cadence: null
-      page: team/how-we-work-review.md
+      page: team/how-we-work.md

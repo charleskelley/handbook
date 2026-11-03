@@ -1,6 +1,6 @@
 ---
 title: Technology
-type: landing
+type: general
 owner: platform-owner
 audience: [ds, mle, de]
 status: draft
@@ -10,14 +10,15 @@ review_cadence: 180d
 
 # Technology
 
-The platform the team depends on, how environments are laid out, how to set up
-a working machine, and how access is granted and reviewed.
+What the team works with: the platform it depends on, how environments are laid
+out, its development tools, and how to set up a machine and get access.
 
-Page types here: **platform** (one per component), **setup-guide** (one per
-environment or toolchain), **access** (one per system or dataset that needs a
-request).
+Page types here: **platform** (one per component), **how-to** (setup and access
+recipes).
 
 ## Pages
 
-*No pages yet. Start with the warehouse and compute platform pages, a local
-setup guide, and the access page for production data.*
+- [Development tools](tools.md): what the team develops with.
+
+*Start with the warehouse and compute platform pages, a local setup how-to, and
+the how-to for requesting production data access.*

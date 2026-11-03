@@ -1,6 +1,6 @@
 ---
 title: Apps
-type: app-registry
+type: general
 owner: analytics-lead
 audience: [all]
 status: draft
