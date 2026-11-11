@@ -27,6 +27,10 @@ uv run --group docs pymarkdown scan docs/                    # Markdown lint
 
 CI runs the same checks plus a link check on every pull request.
 
+With [just](https://just.systems) installed, `just` lists shortcuts for all of
+these: `just serve`, `just build`, `just check` (validate, lint, build, as CI
+does), `just stale`, and `just clean`.
+
 ## The content contract
 
 Three documents define how this handbook is written:
