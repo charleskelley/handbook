@@ -1,0 +1,32 @@
+# Builds the MLflow server image on main and pushes it to the dev Docker
+# repository. Terraform's mlflow_image_tag then moves the service to it.
+
+variables:
+  ARTIFACTORY_URL: https://artifactory.example.com
+  ARTIFACTORY_HOST: artifactory.example.com
+  JFROG_OIDC_PROVIDER: gitlab
+  DOCKER_IMAGE: $ARTIFACTORY_HOST/docker/library/docker:27
+  BASE_IMAGE: $ARTIFACTORY_HOST/docker/library/python:3.12-slim
+  INDEX_URL: $ARTIFACTORY_URL/artifactory/api/pypi/pypi/simple
+  MLFLOW_VERSION: "3.0.0"   # placeholder: pin the release you tested
+
+build:
+  image: $DOCKER_IMAGE
+  services: [{ name: "$DOCKER_IMAGE-dind", alias: docker }]
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  id_tokens:
+    JFROG_OIDC_TOKEN:
+      aud: $ARTIFACTORY_URL
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - . ./artifactory-auth.sh
+    - TAG="$(date -u +%Y-%m-%d)-${CI_COMMIT_SHORT_SHA}"
+    - printf '%s' "$ARTIFACTORY_TOKEN" | docker login "$ARTIFACTORY_HOST" -u "${ARTIFACTORY_USER:-gitlab}" --password-stdin
+    - docker build
+        --build-arg BASE_IMAGE="$BASE_IMAGE" --build-arg INDEX_URL="$INDEX_URL"
+        --build-arg MLFLOW_VERSION="$MLFLOW_VERSION" --secret id=netrc,src="$HOME/.netrc"
+        -t "$ARTIFACTORY_HOST/docker-dev-local/mlflow:$TAG" .
+    - docker push "$ARTIFACTORY_HOST/docker-dev-local/mlflow:$TAG"

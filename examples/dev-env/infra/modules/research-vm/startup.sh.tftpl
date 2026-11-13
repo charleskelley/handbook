@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Runs as root at every boot. Wires the VM to Artifactory and installs uv.
+# Everything else comes from the project: `uv sync` installs Python and packages.
+# Terraform fills in the values below; bash variables are written $${like_this}.
+set -euo pipefail
+
+ARTIFACTORY_URL="${artifactory_url}"
+ARTIFACTORY_USER="${artifactory_user}"
+TOKEN_SECRET="${token_secret}"
+UV_VERSION="${uv_version}"
+RELEASES="$${ARTIFACTORY_URL}/artifactory/github-releases"
+host="$${ARTIFACTORY_URL#https://}"
+host="$${host%%/*}"
+
+# Read-only token, synced into Secret Manager from the secret manager of record.
+# The VM has one user, so a world-readable netrc is acceptable here.
+install -d -m 0755 /etc/artifactory
+token="$(gcloud secrets versions access latest --secret="$${TOKEN_SECRET}")"
+printf 'machine %s login %s password %s\n' "$${host}" "$${ARTIFACTORY_USER}" "$${token}" > /etc/artifactory/netrc
+chmod 0644 /etc/artifactory/netrc
+
+# uv: the binary from Artifactory's cache of GitHub releases.
+curl -fsSL --netrc-file /etc/artifactory/netrc \
+  "$${RELEASES}/astral-sh/uv/releases/download/$${UV_VERSION}/uv-x86_64-unknown-linux-gnu.tar.gz" \
+  | tar -xz --strip-components=1 -C /usr/local/bin
+
+# uv for every user: Artifactory as the only index and the Python mirror.
+install -d -m 0755 /etc/uv
+cat > /etc/uv/uv.toml <<UV
+python-install-mirror = "$${RELEASES}/astral-sh/python-build-standalone/releases/download"
+
+[[index]]
+name = "artifactory"
+url = "$${ARTIFACTORY_URL}/artifactory/api/pypi/pypi/simple"
+default = true
+UV
+
+# NETRC for every login, including the non-interactive sessions IDEs open.
+grep -q '^NETRC=' /etc/environment || echo 'NETRC=/etc/artifactory/netrc' >> /etc/environment
+grep -q '^HF_ENDPOINT=' /etc/environment ||
+  echo "HF_ENDPOINT=$${ARTIFACTORY_URL}/artifactory/api/huggingfaceml/huggingface" >> /etc/environment
+
+# Other languages are wired when a project first needs them, in the same way:
+# a registry config pointing at Artifactory, a toolchain mirror, and a lockfile.
+# See the handbook how-to "Add a language toolchain".

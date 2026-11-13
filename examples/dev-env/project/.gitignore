@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+dist/
+.env
+.models/
+*.parquet
+*.csv
+# Made against public PyPI here; a fork runs `uv lock` against Artifactory and commits it.
+uv.lock
+.pytest_cache/

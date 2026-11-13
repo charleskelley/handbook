@@ -1,0 +1,38 @@
+# Builds the workstation image on main and pushes it to the dev Docker repository.
+# Terraform's workstation_image_tag then moves the team to it.
+
+variables:
+  ARTIFACTORY_URL: https://artifactory.example.com
+  ARTIFACTORY_HOST: artifactory.example.com
+  JFROG_OIDC_PROVIDER: gitlab
+  DOCKER_IMAGE: $ARTIFACTORY_HOST/docker/library/docker:27
+  BASE_IMAGE: $ARTIFACTORY_HOST/docker/cloud-workstations-images/predefined/code-oss:latest
+  UV_VERSION: 0.9.0
+  # The build string on the Toolbox App's About tab. Laptops must run this build.
+  JETBRAINS_TOOLBOX_BUILD: "0.0.0.00000"
+  # Path under download.jetbrains.com of the PyCharm Linux archive.
+  PYCHARM_ARCHIVE: "python/pycharm-0000.0.tar.gz"
+
+build:
+  image: $DOCKER_IMAGE
+  services: [{ name: "$DOCKER_IMAGE-dind", alias: docker }]
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  id_tokens:
+    JFROG_OIDC_TOKEN:
+      aud: $ARTIFACTORY_URL
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    # The same token exchange as the project pipeline's scripts/ci/artifactory-auth.sh.
+    - . ./artifactory-auth.sh
+    - TAG="$(date -u +%Y-%m-%d)-${CI_COMMIT_SHORT_SHA}"
+    - printf '%s' "$ARTIFACTORY_TOKEN" | docker login "$ARTIFACTORY_HOST" -u "${ARTIFACTORY_USER:-gitlab}" --password-stdin
+    - docker build
+        --build-arg BASE_IMAGE="$BASE_IMAGE" --build-arg ARTIFACTORY_URL="$ARTIFACTORY_URL"
+        --build-arg UV_VERSION="$UV_VERSION"
+        --build-arg JETBRAINS_TOOLBOX_BUILD="$JETBRAINS_TOOLBOX_BUILD" --build-arg PYCHARM_ARCHIVE="$PYCHARM_ARCHIVE"
+        --secret id=netrc,src="$HOME/.netrc"
+        -t "$ARTIFACTORY_HOST/docker-dev-local/workstation:$TAG" .
+    - docker push "$ARTIFACTORY_HOST/docker-dev-local/workstation:$TAG"

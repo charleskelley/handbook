@@ -1,0 +1,21 @@
+# Local hooks only: pre-commit would otherwise clone hook repositories from
+# GitHub, which the network does not allow. The tools come from the project's
+# dev dependency group, installed from Artifactory by `uv sync`.
+repos:
+  - repo: local
+    hooks:
+      - id: nbstripout
+        name: strip notebook outputs
+        entry: uv run nbstripout
+        language: system
+        files: \.ipynb$
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types: [python]

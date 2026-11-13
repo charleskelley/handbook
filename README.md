@@ -53,6 +53,7 @@ in the repository.
 docs/            the pages, one directory per section
 facts/           YAML facts rendered into pages
 includes/        shared Markdown fragments (snippets)
+examples/        example sources and code that pages cite and quote
 templates/       one template per page type
 scripts/         validator, staleness report, notebook conversion
 zensical.toml    site configuration and navigation

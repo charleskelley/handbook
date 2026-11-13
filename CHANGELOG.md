@@ -3,6 +3,13 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.1] - 2026-11-11
+
+### Added
+
+- Snippets may quote files, or named sections of files, from `examples/`, so
+  pages that show example code include it rather than copy it.
+
 ## [0.3.0] - 2026-11-02
 
 ### Changed

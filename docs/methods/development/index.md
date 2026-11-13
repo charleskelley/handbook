@@ -20,5 +20,13 @@ needed.
 
 - [Style guides](style-guide.md): the guides the team follows, and where they live.
 - [Conventions](conventions.md): repository and data modeling conventions.
+- [Development environments](environments.md): workstations, laptops, research
+  VMs, and notebooks, and the rules that make them the same.
+- [Path to production](path-to-production.md): how code and models reach
+  production, and what never does.
+- [Experiment tracking](experiment-tracking.md): recording research runs, the
+  fixture production reproduces, and where feature code lives.
+- [Model monitoring](model-monitoring.md): the prediction log, drift,
+  performance after labels arrive, and reports.
 
 *Add how-tos here as tasks recur, for example shipping a model.*
