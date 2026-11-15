@@ -8,11 +8,6 @@ last_reviewed: 2026-11-12
 review_cadence: 180d
 tags: [monitoring, mlops, production]
 sources:
-  - "examples/dev-env/project/src/example_model/score.py"
-  - "examples/dev-env/project/src/example_model/performance.py"
-  - "examples/dev-env/project/src/example_model/monitoring.py"
-  - "examples/dev-env/project/src/example_model/report.py"
-  - "examples/dev-env/infra/envs/prod/main.tf"
   - "https://docs.cloud.google.com/vertex-ai/docs/model-monitoring/overview"
 ---
 
@@ -36,10 +31,6 @@ the output table for consumers and appends the same rows, with the features,
 the score, the model version, and the time, to the prediction log. It is
 partitioned by `scored_at`, which is the timestamp Model Monitoring windows on.
 
-```python
---8<-- "examples/dev-env/project/src/example_model/score.py"
-```
-
 Serving reads from the output table; it does not score, so there is one log and
 one place a prediction can come from. See
 [Path to production](path-to-production.md#serving).
@@ -62,10 +53,6 @@ feature drift and prediction drift, alerts go to the team list. Feature
 attribution is not available for models served off Vertex AI, and is not
 needed for an alert.
 
-```python
---8<-- "examples/dev-env/project/src/example_model/monitoring.py"
-```
-
 A drift alert means the world moved, not that the model is wrong. It is the
 prompt to open the report and, if labels agree, to retrain.
 
@@ -76,10 +63,6 @@ predictions, computes the metrics per model version and week, appends them to
 `model_metrics`, and publishes the latest as Cloud Monitoring custom metrics.
 An alert policy watches `roc_auc` against the floor in the config.
 
-```python
---8<-- "examples/dev-env/project/src/example_model/performance.py"
-```
-
 ## Reports: Evidently
 
 A threshold says that something changed; it does not say what. Where a model
@@ -88,10 +71,6 @@ predictions, with labels where present, to the reference run's fixture: drift
 per feature, score distribution, and classification quality. It is saved as a
 static HTML page and a JSON file in the reports bucket, under the model and the
 date, and read by a person. Reports are for understanding; they do not alert.
-
-```python
---8<-- "examples/dev-env/project/src/example_model/report.py"
-```
 
 ## When an alert fires
 
@@ -105,12 +84,13 @@ Triggered retraining is optional: a subscription on the alert policy can submit
 the train pipeline so a challenger is waiting when someone looks. It never
 promotes. The ladder is on [Path to production](path-to-production.md#the-retraining-ladder).
 
-## What is in the Terraform
+## What the infrastructure provides
 
-The monitoring dataset and its three tables, the reports bucket, the Vertex AI
-service agent's access to it, Cloud Scheduler for the two weekly jobs, the
-email notification channel, and the performance alert policy. The Cloud Run
-jobs themselves are created by the deploy job from the release image.
+The infrastructure repository defines the monitoring dataset and its three
+tables, the reports bucket, the Vertex AI service agent's access to it, the
+schedules for the two weekly jobs, the notification channel, and the
+performance alert policy. The Cloud Run jobs themselves are created by the
+deploy job from the release image.
 
 ## See also
 

@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [production, mlops, ci]
-sources:
-  - "examples/dev-env/README.md"
 ---
 
 # Path to production
@@ -61,13 +59,9 @@ and the main branch run only the checks.
 
 CI holds no stored credentials. Each job exchanges its GitLab identity token for
 a short-lived Artifactory token and short-lived Google credentials, and Google
-trusts only protected release tags of the project.
-
-??? example "The project pipeline, `.gitlab-ci.yml`"
-
-    ```yaml
-    --8<-- "examples/dev-env/project/.gitlab-ci.yml"
-    ```
+trusts only protected release tags of the project. The pipeline definition
+lives in the project template: a project copies it and changes variables, not
+stages. See [GitLab CI](../../technology/gitlab-ci.md).
 
 ## Promotion
 
@@ -110,9 +104,9 @@ live. Move to microbatch, a cache store such as Bigtable, or real-time scoring
 only when freshness or latency demand it, and record why in a decision record.
 The reasons are in [DR-0004](../../team/decisions/DR-0004-serve-from-batch.md).
 
-```python
---8<-- "examples/dev-env/project/src/example_model/serve.py"
-```
+The lookup service is small on purpose: it reloads the latest batch when its
+copy is older than a configured age, answers one prediction route by entity
+id, and exposes a health check. It has no model inside it.
 
 ## Training in production
 
@@ -135,10 +129,6 @@ ships.
 4. **The template does the plumbing.** A data scientist fills in `train` and
    `evaluate`. An ML engineer pairs on each person's first pipeline.
 
-```python
---8<-- "examples/dev-env/project/src/example_model/gate.py"
-```
-
 ### The retraining ladder
 
 | Rung | Trigger | What is needed |
@@ -148,8 +138,8 @@ ships.
 | Triggered | A drift or performance alert submits the train job | [Model monitoring](model-monitoring.md); optional per model |
 
 Every rung produces a challenger. Promotion to champion is a person's decision
-on every rung, made with `example-model promote`, which also starts the new
-version's monitor.
+on every rung, made with the project's promote command, which also starts the
+new version's monitor.
 
 ## Notebooks
 

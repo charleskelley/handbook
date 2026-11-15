@@ -3,6 +3,24 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.4.0] - 2026-11-13
+
+### Added
+
+- Images with alt text under `docs/assets/`, with `#only-light` and
+  `#only-dark` variants for a diagram that has a version per theme.
+- The Methods overview states how the team practises applied ML, structured
+  by the DPOM landscape, and carries the landscape diagram.
+- Page `status` shows in the navigation: a pencil beside drafts, the
+  renderer's marker beside deprecated pages, nothing beside active ones, with
+  a tooltip naming the status.
+
+### Removed
+
+- Snippets that quote files from `examples/`, and the `examples/` directory.
+  Pages describe how a thing works and link to the repository that holds the
+  code; they do not quote it. Snippets remain for `includes/` fragments.
+
 ## [0.3.1] - 2026-11-11
 
 ### Added

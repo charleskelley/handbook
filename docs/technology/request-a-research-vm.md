@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [compute, terraform]
-sources:
-  - "examples/dev-env/infra/envs/dev/terraform.tfvars.example"
 ---
 
 # How to request, replace, or release a research VM
@@ -22,13 +20,9 @@ through the team's Terraform.
 
 1. Check that a Vertex AI custom job will not do: batch work belongs there.
 2. In the infrastructure repository, add a `research_vm` entry to your user in
-   the dev variables:
-
-    ```hcl
-    --8<-- "examples/dev-env/infra/envs/dev/terraform.tfvars.example"
-    ```
-
-    `sam` gets a 128GB CPU VM and `kim` a GPU VM.
+   the dev variables. The entry names a profile, CPU 128GB, CPU 256GB, or GPU,
+   and nothing else: the module sets the machine type, the image, and the stop
+   schedule.
 3. Open a merge request. Once it is applied, connect as on
    [Connect VS Code](connect-vs-code.md).
 4. **To replace it:** push everything, then ask for it to be recreated.

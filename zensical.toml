@@ -8,6 +8,8 @@ docs_dir = "docs"
 site_dir = "site"
 # Watch facts and includes so `serve` rebuilds when they change.
 watch = ["facts", "includes"]
+# Status markers in the navigation (see [project.extra.status] below).
+extra_css = ["stylesheets/extra.css"]
 
 nav = [
   { "Home" = "index.md" },
@@ -110,6 +112,15 @@ toggle.name = "Switch to system preference"
 #   primary = "green"
 #   accent = "amber"
 
+# Every page's front matter has `status` (spec section 4). The theme shows a
+# marker beside a page in the navigation for any status; these are the
+# tooltips. The icons are in docs/stylesheets/extra.css: a pencil for draft,
+# nothing for active, the theme's own marker for deprecated.
+[project.extra.status]
+draft = "Draft: not yet reviewed by its owner"
+active = "Active: reviewed by its owner"
+deprecated = "Deprecated: see the note at the top of the page"
+
 [project.plugins.macros]
 include_yaml = [
   "facts/kpis.yaml",
@@ -137,7 +148,7 @@ pymdownx.highlight.line_spans = "__span"
 pymdownx.highlight.pygments_lang_class = true
 pymdownx.inlinehilite = {}
 pymdownx.keys = {}
-pymdownx.snippets.base_path = ["includes", "."]
+pymdownx.snippets.base_path = ["includes"]
 pymdownx.snippets.check_paths = true
 pymdownx.superfences.custom_fences = [
   { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },

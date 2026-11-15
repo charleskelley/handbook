@@ -8,9 +8,6 @@ last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [jetbrains, editors]
 sources:
-  - "examples/dev-env/ssh/config.example"
-  - "examples/dev-env/workstation-image/Dockerfile"
-  - "examples/dev-env/workstation-image/210_jetbrains.sh"
   - "https://www.jetbrains.com/help/toolbox-app/jetbrains-gateway-migrations-guide.html"
   - "https://www.jetbrains.com/help/toolbox-app/offline-remote-development-in-the-toolbox-app.html"
 ---

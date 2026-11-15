@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [artifactory, packages]
-sources:
-  - "examples/dev-env/infra/modules/artifactory/main.tf"
 ---
 
 # Artifactory
@@ -59,11 +57,9 @@ uses a token that can read the release repository and nothing else.
   research VMs read a read-only token from the [secret manager](secrets.md). CI
   exchanges its GitLab identity token for a short-lived one.
 
-The repositories are defined in Terraform:
-
-```hcl
---8<-- "examples/dev-env/infra/modules/artifactory/main.tf"
-```
+The repositories are defined in the infrastructure repository's Artifactory
+module, one block per package type, so adding a package type is a merge
+request there.
 
 ## Limits and quotas
 

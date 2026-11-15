@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [vscode, editors]
-sources:
-  - "examples/dev-env/ssh/config.example"
 ---
 
 # How to connect VS Code to a workstation or research VM
@@ -21,15 +19,13 @@ interpreter on the cloud machine. This is the team's default.
 ## Steps
 
 1. Install the **Remote - SSH** extension.
-2. Add the team's entries to `~/.ssh/config`, replacing the placeholders and
-   your OS Login username:
-
-    ```text
-    --8<-- "examples/dev-env/ssh/config.example"
-    ```
-
+2. Add the team's entries to `~/.ssh/config`. There are two kinds: a
+   `workstation` host that reaches your workstation through a local tunnel on
+   port 2222, and a `research-<name>` host per research VM that connects
+   through IAP with a `ProxyCommand` and your OS Login username. The entries
+   are in the team's SSH configuration template.
 3. **Workstation:** start it, then start the tunnel in a terminal and leave it
-   running, as the comment above shows.
+   running.
 4. In VS Code, run **Remote-SSH: Connect to Host** and choose `workstation` or
    `research-<name>`.
 5. Open your clone on the remote machine, run `uv sync`, and choose

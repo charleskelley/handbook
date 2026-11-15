@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [notebooks, vertex]
-sources:
-  - "examples/dev-env/project/notebook-image/Dockerfile"
 ---
 
 # How to start a Workbench notebook
@@ -32,19 +30,18 @@ research.
     uv pip install --python python3 --no-deps --no-build-isolation -e .
     ```
 
-4. Turn on tracking for runs you may promote: set
-   `EXAMPLE_MODEL_EXPERIMENT` to the experiment name.
+4. Turn on tracking for runs you may promote: set the project's experiment
+   name setting.
 5. Run `nbstripout --install` once in the clone. It sets a git filter, so
    outputs never reach a commit.
 
-```dockerfile
---8<-- "examples/dev-env/project/notebook-image/Dockerfile"
-```
+The notebook image is the project's lockfile installed on top of a Workbench
+base image, so it has every dependency and nothing else.
 
 ## Verify
 
-In a notebook, `import example_model` works, and the versions of the main
-packages match `uv.lock`.
+In a notebook, importing the project's package works, and the versions of the
+main packages match `uv.lock`.
 
 ## See also
 

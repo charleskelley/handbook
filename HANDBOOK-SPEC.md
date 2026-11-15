@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.3.1 · Draft**
+**Version 0.4.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. A page that does not fit
@@ -97,6 +97,10 @@ Rules:
   correct, not when the file is edited for formatting.
 - `status: deprecated` pages keep their content and gain an admonition at the
   top pointing to the replacement.
+- `status` also shows in the navigation: a pencil beside a draft page, the
+  renderer's own marker beside a deprecated one, nothing beside an active one.
+  Hovering the marker names the status. A page loses its pencil only when an
+  owner reviews it and sets `status: active`.
 - `owner` is a role where possible (`ds-lead`, `platform-owner`) so pages
   survive staff changes.
 - Quote `title` when it contains a colon (every decision record does), or YAML
@@ -225,9 +229,11 @@ Pages may use CommonMark plus the following, and nothing else:
   `???` collapsible), used sparingly.
 - Content tabs (`=== "Tab"`).
 - Fenced code blocks with a language tag. Mermaid diagrams as `mermaid` fences.
-- Snippets (`--8<-- "path"`) for shared fragments kept under `includes/`, and
-  for quoting a file, or a named section of one, from `examples/`, so quoted
-  code stays in step with the file it comes from.
+- Snippets (`--8<-- "path"`) for shared fragments kept under `includes/`.
+- Images (`![alt](../assets/name.svg)`) with alt text, kept under
+  `docs/assets/`. A diagram with a light and a dark version uses two files,
+  marked `#only-light` and `#only-dark` after the path, so each theme shows
+  its own.
 - Macros `{{ ... }}` and `{% ... %}` that reference variables loaded from
   `facts/*.yaml`. No arithmetic or logic beyond loops and attribute access.
 - Explicit heading anchors (`{: #slug }`), used to give inline insights a stable

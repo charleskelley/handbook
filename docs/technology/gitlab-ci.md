@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [ci, production]
-sources:
-  - "examples/dev-env/project/.gitlab-ci.yml"
 ---
 
 # GitLab CI
@@ -39,9 +37,9 @@ of the project.
 - Approve the gate job after running the GPU tests by hand.
 - Start production training with the manual train job.
 
-```sh
---8<-- "examples/dev-env/project/scripts/ci/artifactory-auth.sh"
-```
+Each job starts by exchanging its identity token for a short-lived Artifactory
+token and writing it where uv and Docker read credentials. The pipeline
+template carries that step; projects do not write it.
 
 ## Limits and quotas
 

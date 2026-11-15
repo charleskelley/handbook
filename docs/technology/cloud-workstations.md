@@ -7,9 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [workstations, environments]
-sources:
-  - "examples/dev-env/infra/modules/workstations/main.tf"
-  - "examples/dev-env/workstation-image/Dockerfile"
 ---
 
 # Cloud Workstations
@@ -41,10 +38,6 @@ flowchart LR
   when the workstation is.
 - **Network:** no public IP. The workstation reaches Artifactory through the dev
   network.
-
-```dockerfile
---8<-- "examples/dev-env/workstation-image/Dockerfile"
-```
 
 ## How we use it
 

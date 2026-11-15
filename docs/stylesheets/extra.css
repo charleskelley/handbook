@@ -10,3 +10,19 @@
   --md-accent-fg-color: #d4a017;
 }
 */
+
+/* Page status markers in the navigation. The theme shows a marker beside any
+   page whose front matter has `status`. The handbook's values are draft,
+   active, and deprecated (spec section 4). Draft shows a pencil, active shows
+   nothing, deprecated keeps the theme's own marker. Tooltips are set in
+   zensical.toml under [project.extra.status]. */
+:root {
+  --md-status--draft: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'><path d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4'/></svg>");
+}
+.md-status--draft::after {
+  -webkit-mask-image: var(--md-status--draft);
+  mask-image: var(--md-status--draft);
+}
+.md-status--active {
+  display: none;
+}

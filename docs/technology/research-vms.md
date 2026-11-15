@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [compute, gpu, environments]
-sources:
-  - "examples/dev-env/infra/modules/research-vm/main.tf"
 ---
 
 # Research VMs
@@ -48,11 +46,9 @@ the Python wheels must match.
    [VS Code](connect-vs-code.md) or [JetBrains](connect-jetbrains.md) page.
 3. Clone, `uv sync`, work, push. Data stays in BigQuery and the governed bucket.
 
-The startup script rebuilds the VM's wiring at every boot:
-
-```bash
---8<-- "examples/dev-env/infra/modules/research-vm/startup.sh.tftpl"
-```
+A startup script rebuilds the VM's wiring at every boot: it installs uv and
+writes the Artifactory configuration and the read-only token from the secret
+manager, so nothing on the disk has to be right.
 
 ## Limits and quotas
 

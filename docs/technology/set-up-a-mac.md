@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [setup, laptop]
-sources:
-  - "examples/dev-env/bootstrap/mac.sh"
 ---
 
 # How to set up a Mac
@@ -26,7 +24,7 @@ administrator rights needed.
    {{ platform.dev.jetbrains_toolbox_build }}, the one the workstation image
    was built against, so do not update it on your own.
 2. In Artifactory, open your profile and generate an identity token.
-3. Run the bootstrap script, with your Artifactory address:
+3. Run the team's bootstrap script, with your Artifactory address:
 
     ```sh
     ARTIFACTORY_URL={{ platform.dev.artifactory_url }} bash mac.sh
@@ -34,19 +32,14 @@ administrator rights needed.
 
     It asks for your username and token once, then installs uv, Python
     {{ platform.dev.python_version }}, `just`, `ruff`, `pre-commit`,
-    `nbstripout`, and the Google Cloud CLI into your home directory.
+    `nbstripout`, and the Google Cloud CLI into your home directory, all
+    downloaded through Artifactory, and writes your token to `~/.netrc`.
 
 4. Open a new terminal and sign in to Google Cloud:
 
     ```sh
     gcloud auth login
     gcloud auth application-default login
-    ```
-
-??? example "The bootstrap script"
-
-    ```bash
-    --8<-- "examples/dev-env/bootstrap/mac.sh"
     ```
 
 ## Verify

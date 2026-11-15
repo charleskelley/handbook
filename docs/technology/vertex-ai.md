@@ -7,9 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [vertex, mlops]
-sources:
-  - "examples/dev-env/project/src/example_model/registry.py"
-  - "examples/dev-env/project/src/example_model/pipeline.py"
 ---
 
 # Vertex AI
@@ -25,7 +22,7 @@ large research runs, and Workbench for notebooks. Experiments are tracked on [ML
 ```mermaid
 flowchart LR
     CI[GitLab CI train job] --> P[Vertex AI Pipelines]
-    P -- runs released image --> T[example-model train]
+    P -- runs released image --> T[Train job: released image]
     T --> B[(Models bucket)]
     T --> R[Model Registry: challenger]
     R -- promote --> C[champion]
@@ -46,12 +43,10 @@ flowchart LR
 | Feature Store | Online serving of feature tables built in BigQuery | Owning the feature definitions |
 | Endpoints | Not used yet: serving runs on Cloud Run | |
 
-Code reaches the registry through one module, so a change of registry changes one
-file:
-
-```python
---8<-- "examples/dev-env/project/src/example_model/registry.py"
-```
+Code reaches the registry through one module in the project with three
+operations: register a trained version as a challenger, promote a version to
+champion, and resolve an alias to a version. A change of registry changes one
+file.
 
 ## Limits and quotas
 
@@ -64,6 +59,7 @@ Owner: {{ platform.components.vertex_ai.owner }}. Support:
 
 ## Runbooks
 
-- **Promote a challenger.** Compare it with the champion, then call
-  `registry.promote` with its version. Serving picks it up on the next deploy.
+- **Promote a challenger.** Compare it with the champion, then run the
+  project's promote command with its version. Serving picks it up on the next
+  deploy.
 - **Roll back.** Move the `champion` alias back to the previous version.

@@ -67,8 +67,8 @@ platform:
       support_channel: "*[unverified: needs source]*"
   # Development environment and path to production. The values below that look
   # like placeholders (example.com, your-*-project) are template placeholders a
-  # fork replaces. The rest are the team's chosen settings, also set in
-  # examples/dev-env/infra.
+  # fork replaces. The rest are the team's chosen settings, which the
+  # infrastructure repository sets too.
   dev:
     gcp_dev_project: your-dev-project
     gcp_prod_project: your-prod-project

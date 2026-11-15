@@ -7,8 +7,6 @@ status: draft
 last_reviewed: 2026-11-11
 review_cadence: 180d
 tags: [environments, development]
-sources:
-  - "examples/dev-env/README.md"
 ---
 
 # Development environments
@@ -44,10 +42,6 @@ workstation, a research VM, and in CI:
 - **Each machine's uv configuration** points at Artifactory for packages and for
   Python itself. The Mac bootstrap, the workstation image, and the research VM
   startup script write it. Projects do not name an index.
-
-```toml
---8<-- "examples/dev-env/project/pyproject.toml:uv"
-```
 
 ## Data never lands on a machine
 

@@ -31,9 +31,9 @@ are not registered in MLflow: the Vertex AI Model Registry remains the catalog
 of production models, because model monitoring hangs off it. The research run
 production must reproduce is named in the config by run id, with a fixture of
 its holdout rows and scores, and the gate checks both metrics and rank
-agreement against that fixture. The reference is written only by
-`example-model reference`, which refuses runs from a dirty checkout or without
-a fixture.
+agreement against that fixture. The reference is written only by the
+project's reference command, which refuses runs from a dirty checkout or
+without a fixture.
 
 ## Alternatives considered
 
@@ -54,9 +54,9 @@ a fixture.
   which is also the artifact a reviewer can look at.
 - Notebook-defined features cannot reach the reference, which is a habit to
   teach, not a tool to buy.
-- If the server is refused, the fallback plan in `examples/dev-env/` keeps the
-  fixture, the gate, and the reference command unchanged and swaps only the
-  tracker.
+- If the server is refused, the fallback is Vertex AI Experiments. It keeps
+  the fixture, the gate, and the reference command unchanged and swaps only
+  the tracker.
 
 ## Status
 

@@ -27,9 +27,17 @@ Counterfactual
 :   What would have happened without the decision or treatment. The comparison
     every measured outcome needs.
 
+Decision log
+:   The record of each decision a model's prediction was turned into: the
+    entity, the score, the policy and its version, the action, and when. The
+    handoff between Prediction and Outcome, and the thing Measure attributes
+    against. Not a decision record. See
+    [Methods](../methods/index.md#the-decision-handoff).
+
 Decision record
 :   A short, numbered, append-only document recording a team decision and its
-    reasoning. See [Decision records](../team/decisions/index.md).
+    reasoning. Not a decision log. See
+    [Decision records](../team/decisions/index.md).
 
 Drift
 :   A change in the distribution of a model's inputs or scores relative to the
@@ -46,6 +54,17 @@ Insight
 :   An endogenous or exogenous event or circumstance that changes how data is
     interpreted. Interpretation differs before and after its date. See
     [Insights](../insights/index.md).
+
+Outcome loop
+:   The path across Data, Prediction, Outcome, and Measure: a decision the
+    business agreed to make, a prediction turned into a decision by a policy,
+    the decision recorded, the outcome attributed against a counterfactual,
+    and the result deciding what runs next: scale, sustain, fix, or retire. See
+    [Methods](../methods/index.md).
+
+Policy
+:   The written rule that turns a score into an action, with a version and an
+    owner. See [Methods](../methods/index.md#the-decision-handoff).
 
 KPI
 :   Key performance indicator. A business metric with a definition, a formula,
@@ -67,7 +86,7 @@ Quirk
 Reference run
 :   The research run, named by id in a model's config, that production
     training must reproduce before the model can be registered. Written only by
-    `example-model reference`. See
+    the project's reference command. See
     [Experiment tracking](../methods/development/experiment-tracking.md).
 
 Repository: local, remote, virtual
