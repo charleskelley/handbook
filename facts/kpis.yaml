@@ -1,4 +1,6 @@
-# Business KPIs. One entry per metric page under docs/business/.
+# Business KPIs. One entry per metric page under docs/business/kpis/.
+# The tree fields (parent, edge, guardrail_for, has_loop) place the KPI in the
+# driver tree on docs/business/kpis/index.md; see docs/team/kpi-driver-tree.md.
 # Pages render these values with macros, e.g. {{ kpis["items"].example.current }}.
 # Update here, bump as_of, and every page follows.
 kpis:
@@ -12,4 +14,8 @@ kpis:
       period: monthly
       source_of_truth: Name of the report, table, or dashboard that is canonical.
       owner: analytics-lead
-      page: business/kpi-example.md
+      page: business/kpis/kpi-example.md
+      parent: null           # key of the KPI this one feeds; null for a root
+      edge: null             # how it feeds the parent: sum, product, ratio, or causal
+      guardrail_for: null    # key of the driver this KPI protects, if it is a guardrail
+      has_loop: false        # true when a model or rule makes the decision that moves it

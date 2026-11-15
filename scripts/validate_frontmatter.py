@@ -2,7 +2,8 @@
 
 Usage: python scripts/validate_frontmatter.py [docs_dir]
 Checks front matter (section 4), required headings on strict pages and templates
-(section 5), and links held in facts (section 7). Exits 1 on any error. Pages that
+(section 5), that no wireframe prompt remains on an active page (section 6),
+and links held in facts (section 7). Exits 1 on any error. Pages that
 use a placeholder `example` fact key print a warning and do not fail.
 """
 
@@ -19,6 +20,15 @@ from pydantic import BaseModel, ConfigDict, ValidationError, field_validator
 
 # Required H2 headings per strict type, in order. Mirrors HANDBOOK-SPEC.md section 5.
 REQUIRED_HEADINGS: dict[str, list[str]] = {
+    "business-overview": [
+        "What the company does", "Products and segments", "How money is made",
+        "Customers and markets", "Operations", "Regulation and risk",
+        "Seasonality and cycles", "Organization", "What this means for the team",
+    ],
+    "decision-inventory": [
+        "How to read this page", "Decisions", "Candidates for an outcome loop",
+        "How a row changes",
+    ],
     "kpi": [
         "Definition", "Formula", "Current level", "Owner and source of truth",
         "What moves it", "Common misreadings", "Related KPIs",
@@ -59,6 +69,8 @@ TAG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 H2_RE = re.compile(r"^## +(.+?)(?: *\{[^}]*\})? *$")
 ANCHOR_RE = re.compile(r"\{: *#([A-Za-z0-9_-]+)[^}]*\}")
 EXAMPLE_KEY_RE = re.compile(r"\{[{%][^}]*\bexample\b")
+# A wireframe prompt (spec section 6). None may remain on an active page.
+ADD_PROMPT_RE = re.compile(r"\*Add:")
 
 
 class FrontMatter(BaseModel):
@@ -161,6 +173,8 @@ def validate(docs_dir: Path) -> list[str]:
             continue
         is_system_index = path.name == "index.md" and path.parent.parent == docs_dir / "data"
         errors += [f"{path}: {e}" for e in heading_errors(data["type"], text, is_system_index)]
+        if data["status"] == "active" and (n := len(ADD_PROMPT_RE.findall(body_of(text)))):
+            errors.append(f"{path}: active page still has {n} wireframe prompt(s) (*Add:*)")
     return errors
 
 

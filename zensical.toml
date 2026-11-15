@@ -15,6 +15,13 @@ nav = [
   { "Home" = "index.md" },
   { "Business" = [
     { "Overview" = "business/index.md" },
+    { "Decision inventory" = "business/decisions.md" },
+    { "KPIs" = [
+      { "Overview" = "business/kpis/index.md" },
+    ] },
+    { "Strategy" = "business/strategy.md" },
+    { "Operating environment" = "business/operating-environment.md" },
+    { "Competitive position" = "business/competitive-position.md" },
   ] },
   { "Data" = [
     { "Overview" = "data/index.md" },
@@ -54,6 +61,7 @@ nav = [
     { "Overview" = "team/index.md" },
     { "How we work" = "team/how-we-work.md" },
     { "Onboarding" = "team/onboarding.md" },
+    { "KPI driver tree" = "team/kpi-driver-tree.md" },
     { "Decisions" = [
       { "Overview" = "team/decisions/index.md" },
       { "DR-0001" = "team/decisions/DR-0001-production-runs-ci-built-artifacts.md" },
@@ -63,7 +71,13 @@ nav = [
       { "DR-0005" = "team/decisions/DR-0005-monitor-with-vertex-and-evidently.md" },
     ] },
   ] },
-  { "Insights" = "insights/index.md" },
+  { "Oversight" = [
+    { "Overview" = "oversight/index.md" },
+    { "Monitoring" = "oversight/monitoring.md" },
+    { "Governance" = "oversight/governance.md" },
+    { "Decision log" = "oversight/decision-log.md" },
+    { "Insights" = "oversight/insights/index.md" },
+  ] },
   { "Glossary" = "glossary/index.md" },
   { "Apps" = "apps/index.md" },
 ]
@@ -123,6 +137,7 @@ deprecated = "Deprecated: see the note at the top of the page"
 
 [project.plugins.macros]
 include_yaml = [
+  "facts/business.yaml",
   "facts/kpis.yaml",
   "facts/data.yaml",
   "facts/platform.yaml",

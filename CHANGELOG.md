@@ -3,6 +3,31 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.0] - 2026-11-15
+
+### Added
+
+- Two strict page types for the Business section: `business-overview`, the
+  company in the shape of an annual filing's Business section, which is the
+  Business index; and `decision-inventory`, the decisions the business makes
+  repeatedly, each a candidate outcome loop. Templates for both.
+- Business layout: overview, decision inventory, three lens pages, and
+  `docs/business/kpis/` whose index is the KPI driver tree. Fill order stated.
+- Wireframes: a page may be published as headings plus `*Add:*` prompts and a
+  "Gather first" admonition naming its sources. The validator fails an active
+  page that still has a prompt.
+- `facts/business.yaml`; KPI facts gain their place in the driver tree
+  (parent, edge, guardrail_for, has_loop).
+- Oversight section: monitoring policy and register, governance, and the
+  decision log, as wireframes.
+
+### Changed
+
+- The Insights section becomes `docs/oversight/insights/`, inside the new
+  Oversight section, so the handbook has one section for the landscape's
+  Monitor & Govern band. The `insight` page type and `facts/insights.yaml` are
+  unchanged; links to the old path are updated.
+
 ## [0.4.0] - 2026-11-13
 
 ### Added

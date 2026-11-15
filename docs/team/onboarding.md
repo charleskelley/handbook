@@ -33,5 +33,13 @@ to production on this platform.
 ## By end of quarter one
 
 1. *Add: the method pages and their lessons.* Why: do not relearn what the team already paid for.
-2. [Insights](../insights/index.md): what has changed how the data should be read.
+2. [Oversight](../oversight/index.md): what is watched, who governs it, and the
+   insights that have changed how the data should be read.
 3. [Decision records](decisions/index.md): the reasons behind the current shape of things.
+
+## Changing this handbook
+
+By now you will have found a gap. Every page has an owner and a review date in
+its front matter, so start by asking the owner. Facts that change live in one
+place and are rendered into pages, so a number appears once; add the fact, not
+the number. The rules are in the repository's `HANDBOOK-SPEC.md`.

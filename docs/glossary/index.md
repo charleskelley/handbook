@@ -53,7 +53,7 @@ Fixture
 Insight
 :   An endogenous or exogenous event or circumstance that changes how data is
     interpreted. Interpretation differs before and after its date. See
-    [Insights](../insights/index.md).
+    [Insights](../oversight/insights/index.md).
 
 Outcome loop
 :   The path across Data, Prediction, Outcome, and Measure: a decision the

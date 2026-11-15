@@ -127,8 +127,11 @@ Monitoring is not measurement: a healthy model can be worth nothing.
 
 **How we practise it.** [Model monitoring](development/model-monitoring.md):
 a prediction log, drift per champion version, labelled performance once labels
-arrive, and reports a person reads. [Insights](../insights/index.md) record
-the events that change how data should be read.
+arrive, and reports a person reads. That is the engineering. What must be
+watched on every model, who acts, and what the business's risk appetite
+requires are policy, and policy lives in [Oversight](../oversight/index.md),
+along with the [insights](../oversight/insights/index.md) that record the
+events that change how data should be read.
 [Decision records](../team/decisions/index.md) record the team's own
 decisions and why, blamelessly.
 

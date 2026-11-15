@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.4.0 · Draft**
+**Version 0.5.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. A page that does not fit
@@ -45,19 +45,40 @@ linked from here through the Apps page.
 | Section | Directory | What lives here | Page types |
 |---|---|---|---|
 | Home | `docs/index.md` | What the handbook is, how to use it, where each reader starts | `general` |
-| Business | `docs/business/` | How the company and its products make money, the strategies that matter, the KPIs and what they mean | `kpi`, `general` |
+| Business | `docs/business/` | How the company and its products make money, the strategies that matter, the decisions the business makes, the KPIs and how they relate | `business-overview`, `decision-inventory`, `kpi`, `general` |
 | Data | `docs/data/` | The systems data comes from, how it is organized into domains, what each table holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
 | Methods | `docs/methods/` | How the team works with data: analysis methods and model families at the top level, development practices under `development/` | `method`, `how-to`, `general` |
 | Technology | `docs/technology/` | What the team works with: platforms, environments, development tools, setup and access recipes | `platform`, `how-to`, `general` |
 | Team | `docs/team/` | How the team works with partners, the onboarding guide, decision records | `decision-record`, `general` |
-| Insights | `docs/insights/` | The index of every insight, and freestanding insight writeups | `insight`, `general` |
+| Oversight | `docs/oversight/` | The Monitor & Govern band: what is watched on every model and who acts, the governance rules, the decision log, and under `insights/` the index of every insight and the freestanding writeups | `insight`, `general` |
 | Glossary | `docs/glossary/` | Terms the team and its partners use, defined once, on one page | `general` |
 | Apps | `docs/apps/` | Registry of companion applications, generated from `facts/apps.yaml` | `general` |
 
 Each section directory has an `index.md` of type `general` that says what the
 section holds and lists its pages. Index pages carry no facts and no numbers.
-The exception is a system directory under Data, whose `index.md` is that
-system's `source-system` page.
+Two exceptions: a system directory under Data, whose `index.md` is that
+system's `source-system` page, and the Business section, whose `index.md` is
+the `business-overview` page.
+
+### Business layout
+
+The Business index is the overview of the company. Beside it sit the decision
+inventory, three lens pages (strategy, operating environment, competitive
+position), and `docs/business/kpis/`, whose `index.md` is the KPI driver tree
+and whose other pages are one `kpi` page per metric. Fill order: overview,
+decision inventory, KPI tree and KPI pages, then the lens pages last.
+
+### Oversight layout
+
+Oversight is the Monitor & Govern band. Its index says how the parts relate.
+`monitoring.md` is policy and register: what must be watched on every model
+in production, the thresholds, and who acts. `governance.md` is the rules:
+approvals, model risk, access and privacy, and the business's risk appetite
+applied. `decision-log.md` is the contract for recording business decisions
+so they can be audited and replayed. `insights/` holds the generated index and
+freestanding insight pages. The boundary with Methods: Oversight says what
+must be true and who answers for it; Methods says how the team makes it true.
+A page that needs both is two pages that link.
 
 ### Data layout
 
@@ -108,8 +129,8 @@ Rules:
 
 ## 5. Page types
 
-There are nine strict types, each with a template in `templates/`, and one free
-type. Each strict type lists its purpose and its required sections, in order.
+There are eleven strict types, each with a template in `templates/`, and one
+free type. Each strict type lists its purpose and its required sections, in order.
 The validator enforces the required sections. Optional sections are named here
 and may be added after the required ones.
 
@@ -129,6 +150,30 @@ Purpose: anything that does not repeat often enough to need a shape, including
 section indexes, the glossary, the Apps page, how-we-work, and business pages
 such as how a product makes money. Front matter only, no required sections.
 Organic pages may become a strict type later if a pattern emerges.
+
+### business-overview (Business)
+Purpose: the company as a new reader needs it, in the shape of the Business
+section of an annual filing. One page per handbook, the Business index.
+Required: **What the company does** (one paragraph a new hire repeats
+correctly); **Products and segments** (what is sold, to whom, grouped the way
+finance reports it); **How money is made** (per segment: who pays, for what,
+when, and the pricing basis); **Customers and markets**; **Operations** (how
+the product is delivered and the few processes that matter); **Regulation and
+risk** (the risk factors that touch data or models, with links to Team and
+Methods); **Seasonality and cycles**; **Organization** (how the business is
+organized and where the data science team sits); **What this means for the
+team** (the outcomes the loop is entered at). Optional: **Insights**. Segment
+names and revenue mix come from `facts/business.yaml`.
+
+### decision-inventory (Business)
+Purpose: the decisions the business makes repeatedly, each a candidate outcome
+loop. One page per handbook. Required: **How to read this page**;
+**Decisions** (a table with the columns decision, who decides, cadence,
+inputs, outcome moved, mechanism, loop, KPI; mechanism is one of judgment,
+rule, or model; loop is open or closed); **Candidates for an outcome loop**
+(the open rows worth closing first, and why); **How a row changes** (who adds
+a row, who reviews it, and when a decision record is needed). Optional:
+**Insights**.
 
 ### kpi (Business)
 Purpose: define one business metric. One page per KPI. Required: **Definition**
@@ -208,7 +253,7 @@ DR-NNNN). Decision records are never edited after acceptance except to change
 status. A decision record says why a change was made. An insight says what the
 change did to the data.
 
-### insight (Insights)
+### insight (Oversight)
 Purpose: a freestanding writeup of an endogenous or exogenous event or
 circumstance that changes how data is interpreted, such as a record system
 change or a market shock. Required: **What is true**; **When it applied**; **How
@@ -218,7 +263,7 @@ rule: no individual is named as a cause.
 Small insights are inline and use the format in section 6. A large insight gets
 this page, and each affected page carries an inline note linking to it. Every
 insight, inline or freestanding, has an entry in `facts/insights.yaml`, and
-`docs/insights/index.md` is generated from that file.
+`docs/oversight/insights/index.md` is generated from that file.
 
 ## 6. Allowed Markdown
 
@@ -251,12 +296,29 @@ full writeup if there is one:
 ### Short title {: #short-slug }
 
 YYYY-MM-DD to YYYY-MM-DD. What happened, and how it changes reading the data.
-[Full writeup](../insights/short-slug.md).
+[Full writeup](../oversight/insights/short-slug.md).
 ```
 
 Not allowed: inline HTML elsewhere, images without alt text, absolute links to
 pages inside this site, emoji shortcodes in headings, any renderer-specific
 syntax not listed above.
+
+### Wireframes
+
+A page may be published before it is written, as a wireframe: the headings in
+place and a prompt under each one saying what goes there and why. A wireframe
+is `status: draft`, so it carries the pencil in the navigation, and it is
+filled in place by a person or an assistant working from the sources it names.
+Three conventions make that fill reliable:
+
+- A `!!! note "Gather first"` admonition at the top lists the source documents
+  the page expects, so the fill starts from sources rather than from memory.
+- Each prompt has the form `*Add: what goes here.* Why: why it matters.`, the
+  same form the onboarding page uses. A prompt may also say what to leave as
+  `*[unverified: needs source]*` when the sources are silent.
+- A page cannot be `status: active` while any `*Add:` prompt remains. The
+  validator enforces this. Removing the last prompt is not a review; the owner
+  still confirms the content and bumps `last_reviewed`.
 
 ## 7. Facts
 
@@ -264,7 +326,8 @@ syntax not listed above.
 
 | File | Key | Holds |
 |---|---|---|
-| `facts/kpis.yaml` | `kpis` | `as_of` date and `items`, a mapping of KPI key to name, unit, current level, period, source of truth, owner |
+| `facts/business.yaml` | `business` | `as_of`, `segments` (key to name, what it sells, revenue share), `priorities` (the stated priorities for the current period, each with an owner), `competitors` (key to name and where they compete) |
+| `facts/kpis.yaml` | `kpis` | `as_of` date and `items`, a mapping of KPI key to name, unit, current level, period, source of truth, owner, and its place in the driver tree: parent, edge (sum, product, ratio, causal), guardrail_for, has_loop |
 | `facts/data.yaml` | `data` | `as_of` and `datasets`, a mapping of dataset key to name, location, grain, freshness, latency, retention, owner, source system (where it is pulled from), system of record |
 | `facts/platform.yaml` | `platform` | Environments, quotas, limits, URLs for platform components |
 | `facts/team.yaml` | `team` | Roles and who holds them, team channels, meeting cadence |

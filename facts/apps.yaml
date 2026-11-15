@@ -11,4 +11,4 @@ apps:
       purpose: One sentence on what question it answers.
       status: active          # active | beta | deprecated
       linked_from:
-        - business/kpi-example.md
+        - business/kpis/kpi-example.md
