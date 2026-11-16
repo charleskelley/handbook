@@ -18,14 +18,19 @@ jobs:
         run: uv run --group docs pymarkdown --config .pymarkdown.json scan -r docs
       - name: Build
         run: uv run --group docs zensical build
+      - name: Stage site under its base path
+        # site_url in zensical.toml ends in /handbook/, so the built pages use
+        # root-relative links like /handbook/team/. Placing the site at
+        # _check/handbook lets the link check resolve them from _check.
+        run: mkdir -p _check && mv site _check/handbook
       - name: Link check
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --offline --no-progress site
+          args: --offline --no-progress --root-dir _check _check/handbook
           fail: true
       - name: Stale pages (informational)
         run: uv run --group docs python scripts/stale_report.py docs
       - uses: actions/upload-artifact@v4
         with:
           name: site
-          path: site
+          path: _check/handbook
