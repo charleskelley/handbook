@@ -15,13 +15,13 @@ nav = [
   { "Home" = "index.md" },
   { "Business" = [
     { "Overview" = "business/index.md" },
+    { "Strategy" = "business/strategy.md" },
+    { "Operating environment" = "business/operating-environment.md" },
+    { "Competitive position" = "business/competitive-position.md" },
     { "Decision inventory" = "business/decisions.md" },
     { "KPIs" = [
       { "Overview" = "business/kpis/index.md" },
     ] },
-    { "Strategy" = "business/strategy.md" },
-    { "Operating environment" = "business/operating-environment.md" },
-    { "Competitive position" = "business/competitive-position.md" },
   ] },
   { "Data" = [
     { "Overview" = "data/index.md" },

@@ -28,7 +28,7 @@ while protecting the organization.
 
 ## Applied data science landscape
 
-**The DS Team practices applied data science: work that delivers measurable
+**The DS Team practices applied data science: work that drives measurable
 business outcomes.**
 
 The scientific method and ML/AI theory are the foundation of the team's work,
@@ -38,11 +38,11 @@ it is not this team's focus. The team draws on research but starts and ends its
 work with the outcome in mind, the Outcome Loop, and cultivates the data and
 methods it needs to serve that aim.
 
-The landscape shows how outcome focus looks in practice. Work on an outcome loop
-starts by defining a target outcome, so the first question on any work request is
-what business result it serves and how it will be measured. Work is not finished
-at a model. It is finished when a model's decisions are recorded, acted on, and
-measured, and the measurement decides what runs next.
+The landscape shows what outcome focus looks in practice. Work on an outcome
+loop starts by defining a target outcome, so the first question on any work
+request is what the desired business result is and how it will be measured. Work
+is not finished at a model output. It is finished when a model's decisions are
+recorded, acted on, and measured. And the measurement decides what runs next.
 
 ![The DPOM landscape: Data, Prediction, Outcome, and Measure in a row, a Decision diamond between Prediction and Outcome, the Outcome Loop closing across the top with scale, fix, and retire, and Monitor and Govern and Infrastructure as bands beneath](assets/dpom-landscape-light.svg#only-light)
 ![The DPOM landscape: Data, Prediction, Outcome, and Measure in a row, a Decision diamond between Prediction and Outcome, the Outcome Loop closing across the top with scale, fix, and retire, and Monitor and Govern and Infrastructure as bands beneath](assets/dpom-landscape-dark.svg#only-dark)
@@ -52,11 +52,11 @@ measured, and the measurement decides what runs next.
 ### Navigating the landscape
 
 Enter the landscape at Outcome, not at Data on the left edge, and work back
-through Data and Prediction only once the result and its measure are defined.
-The Decision handoff between Prediction and Outcome is a prediction acted on by
-the business. Each decision is recorded so it can be audited and replayed.
-Measure closes the loop and provides feedback to help decide whether to scale,
-sustain, fix, or retire the loop.
+through Data and Prediction only once the business result and its measure are
+defined. The Decision handoff between Prediction and Outcome is a prediction
+acted on by the business. Each decision is recorded so it can be audited and
+replayed. Measure closes the loop and provides feedback to help decide whether
+to scale, sustain, fix, or retire the loop.
 
 Nothing in the landscape is fixed. The business environment shifts, data
 changes shape, and a model eventually makes predictions based on a world that no
