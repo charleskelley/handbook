@@ -49,7 +49,7 @@ technology the team runs on, the methods it uses, and how the team operates.
 | Page type definitions and required sections | `HANDBOOK-SPEC.md` section 5 |
 | Front matter schema | `HANDBOOK-SPEC.md` section 4 |
 | Page templates | `templates/<type>.md` |
-| Facts | `facts/kpis.yaml`, `facts/data.yaml`, `facts/platform.yaml`, `facts/team.yaml`, `facts/apps.yaml`, `facts/insights.yaml` |
+| Facts | `facts/business.yaml`, `facts/kpis.yaml`, `facts/data.yaml`, `facts/platform.yaml`, `facts/team.yaml`, `facts/apps.yaml`, `facts/insights.yaml` |
 | Shared fragments | `includes/` |
 | Site config and navigation | `zensical.toml` |
 | Checks | `scripts/validate_frontmatter.py`, `scripts/stale_report.py` |

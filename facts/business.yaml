@@ -1,0 +1,27 @@
+# The business as facts: segments, the stated priorities for the current
+# period, and competitors. Pages render these with macros, for example
+# {{ business.segments.example.name }}. Judgment stays on the pages; anything
+# that can change lives here. Update, bump as_of, and every page follows.
+business:
+  as_of: 2026-11-15
+  # One entry per segment, grouped the way finance reports them.
+  segments:
+    example:
+      name: Example segment
+      sells: One line on what this segment sells and to whom.
+      revenue_share: null    # share of total revenue, as a fraction; null until confirmed
+      period: null           # the period the share is for, e.g. FY2026
+      source: null           # the report or filing the share comes from
+  # The stated priorities for the current period, in the business's own words.
+  priorities:
+    example:
+      name: Example priority
+      period: null           # e.g. FY2026 or 2026-H1
+      owner: null            # the senior role accountable, not a name
+      source: null           # the deck, OKR set, or memo it was stated in
+  # Who the business competes with and where.
+  competitors:
+    example:
+      name: Example competitor
+      competes_on: One line on the segments or customers where they compete.
+      source: null

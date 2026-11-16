@@ -3,6 +3,56 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.0] - 2026-11-15
+
+### Added
+
+- Two strict page types for the Business section: `business-overview`, the
+  company in the shape of an annual filing's Business section, which is the
+  Business index; and `decision-inventory`, the decisions the business makes
+  repeatedly, each a candidate outcome loop. Templates for both.
+- Business layout: overview, decision inventory, three lens pages, and
+  `docs/business/kpis/` whose index is the KPI driver tree. Fill order stated.
+- Wireframes: a page may be published as headings plus `*Add:*` prompts and a
+  "Gather first" admonition naming its sources. The validator fails an active
+  page that still has a prompt.
+- `facts/business.yaml`; KPI facts gain their place in the driver tree
+  (parent, edge, guardrail_for, has_loop).
+- Oversight section: monitoring policy and register, governance, and the
+  decision log, as wireframes.
+
+### Changed
+
+- The Insights section becomes `docs/oversight/insights/`, inside the new
+  Oversight section, so the handbook has one section for the landscape's
+  Monitor & Govern band. The `insight` page type and `facts/insights.yaml` are
+  unchanged; links to the old path are updated.
+
+## [0.4.0] - 2026-11-13
+
+### Added
+
+- Images with alt text under `docs/assets/`, with `#only-light` and
+  `#only-dark` variants for a diagram that has a version per theme.
+- The Methods overview states how the team practises applied ML, structured
+  by the DPOM landscape, and carries the landscape diagram.
+- Page `status` shows in the navigation: a pencil beside drafts, the
+  renderer's marker beside deprecated pages, nothing beside active ones, with
+  a tooltip naming the status.
+
+### Removed
+
+- Snippets that quote files from `examples/`, and the `examples/` directory.
+  Pages describe how a thing works and link to the repository that holds the
+  code; they do not quote it. Snippets remain for `includes/` fragments.
+
+## [0.3.1] - 2026-11-11
+
+### Added
+
+- Snippets may quote files, or named sections of files, from `examples/`, so
+  pages that show example code include it rather than copy it.
+
 ## [0.3.0] - 2026-11-02
 
 ### Changed

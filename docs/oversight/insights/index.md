@@ -17,6 +17,8 @@ properties of a system are quirks and live on its data page.
 
 Small insights live inline on the page they affect. Large ones have a page here.
 This index is generated from `facts/insights.yaml`; edit that file, not this page.
+How insights are produced and acted on is the subject of
+[Oversight](../index.md), the section this index belongs to.
 Registry as of {{ insights.as_of }}.
 
 {% for key, category in insights.categories.items() %}
@@ -26,7 +28,7 @@ Registry as of {{ insights.as_of }}.
 | Insight | Kind | Start | End |
 |---|---|---|---|
 {% for id, item in category["items"].items() -%}
-| [{{ item.title }}](../{{ item.link }}) | {{ item.kind }} | {{ item.start }} | {{ item.end or "" }} |
+| [{{ item.title }}](../../{{ item.link }}) | {{ item.kind }} | {{ item.start }} | {{ item.end or "" }} |
 {% else -%}
 | *none yet* | | | |
 {% endfor %}

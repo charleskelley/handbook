@@ -19,4 +19,6 @@ Page types here: **decision-record**.
 
 - [How we work](how-we-work.md): what the team does and how to work with it.
 - [Onboarding](onboarding.md): where a new team member starts.
+- [Maintaining the KPI driver tree](kpi-driver-tree.md): the rules the
+  KPI trees follow and how to extend them.
 - [Decision records](decisions/index.md): what was decided and why.

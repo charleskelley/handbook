@@ -8,11 +8,20 @@ docs_dir = "docs"
 site_dir = "site"
 # Watch facts and includes so `serve` rebuilds when they change.
 watch = ["facts", "includes"]
+# Status markers in the navigation (see [project.extra.status] below).
+extra_css = ["stylesheets/extra.css"]
 
 nav = [
   { "Home" = "index.md" },
   { "Business" = [
     { "Overview" = "business/index.md" },
+    { "Strategy" = "business/strategy.md" },
+    { "Operating environment" = "business/operating-environment.md" },
+    { "Competitive position" = "business/competitive-position.md" },
+    { "Decision inventory" = "business/decisions.md" },
+    { "KPIs" = [
+      { "Overview" = "business/kpis/index.md" },
+    ] },
   ] },
   { "Data" = [
     { "Overview" = "data/index.md" },
@@ -23,21 +32,52 @@ nav = [
       { "Overview" = "methods/development/index.md" },
       { "Style guides" = "methods/development/style-guide.md" },
       { "Conventions" = "methods/development/conventions.md" },
+      { "Development environments" = "methods/development/environments.md" },
+      { "Path to production" = "methods/development/path-to-production.md" },
+      { "Experiment tracking" = "methods/development/experiment-tracking.md" },
+      { "Model monitoring" = "methods/development/model-monitoring.md" },
     ] },
   ] },
   { "Technology" = [
     { "Overview" = "technology/index.md" },
     { "Development tools" = "technology/tools.md" },
+    { "Artifactory" = "technology/artifactory.md" },
+    { "Cloud Workstations" = "technology/cloud-workstations.md" },
+    { "Research VMs" = "technology/research-vms.md" },
+    { "Vertex AI" = "technology/vertex-ai.md" },
+    { "MLflow" = "technology/mlflow.md" },
+    { "GitLab CI" = "technology/gitlab-ci.md" },
+    { "Secret manager" = "technology/secrets.md" },
+    { "How-tos" = [
+      { "Set up a Mac" = "technology/set-up-a-mac.md" },
+      { "Connect VS Code" = "technology/connect-vs-code.md" },
+      { "Connect JetBrains" = "technology/connect-jetbrains.md" },
+      { "Request a research VM" = "technology/request-a-research-vm.md" },
+      { "Start a Workbench notebook" = "technology/start-a-workbench-notebook.md" },
+      { "Add a language toolchain" = "technology/add-a-language-toolchain.md" },
+    ] },
   ] },
   { "Team" = [
     { "Overview" = "team/index.md" },
     { "How we work" = "team/how-we-work.md" },
     { "Onboarding" = "team/onboarding.md" },
+    { "KPI driver tree" = "team/kpi-driver-tree.md" },
     { "Decisions" = [
       { "Overview" = "team/decisions/index.md" },
+      { "DR-0001" = "team/decisions/DR-0001-production-runs-ci-built-artifacts.md" },
+      { "DR-0002" = "team/decisions/DR-0002-train-models-in-production.md" },
+      { "DR-0003" = "team/decisions/DR-0003-track-experiments-on-mlflow.md" },
+      { "DR-0004" = "team/decisions/DR-0004-serve-from-batch.md" },
+      { "DR-0005" = "team/decisions/DR-0005-monitor-with-vertex-and-evidently.md" },
     ] },
   ] },
-  { "Insights" = "insights/index.md" },
+  { "Oversight" = [
+    { "Overview" = "oversight/index.md" },
+    { "Monitoring" = "oversight/monitoring.md" },
+    { "Governance" = "oversight/governance.md" },
+    { "Decision log" = "oversight/decision-log.md" },
+    { "Insights" = "oversight/insights/index.md" },
+  ] },
   { "Glossary" = "glossary/index.md" },
   { "Apps" = "apps/index.md" },
 ]
@@ -86,8 +126,18 @@ toggle.name = "Switch to system preference"
 #   primary = "green"
 #   accent = "amber"
 
+# Every page's front matter has `status` (spec section 4). The theme shows a
+# marker beside a page in the navigation for any status; these are the
+# tooltips. The icons are in docs/stylesheets/extra.css: a pencil for draft,
+# nothing for active, the theme's own marker for deprecated.
+[project.extra.status]
+draft = "Draft: not yet reviewed by its owner"
+active = "Active: reviewed by its owner"
+deprecated = "Deprecated: see the note at the top of the page"
+
 [project.plugins.macros]
 include_yaml = [
+  "facts/business.yaml",
   "facts/kpis.yaml",
   "facts/data.yaml",
   "facts/platform.yaml",
@@ -113,7 +163,7 @@ pymdownx.highlight.line_spans = "__span"
 pymdownx.highlight.pygments_lang_class = true
 pymdownx.inlinehilite = {}
 pymdownx.keys = {}
-pymdownx.snippets.base_path = ["includes", "."]
+pymdownx.snippets.base_path = ["includes"]
 pymdownx.snippets.check_paths = true
 pymdownx.superfences.custom_fences = [
   { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },

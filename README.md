@@ -54,7 +54,7 @@ docs/            the pages, one directory per section
 facts/           YAML facts rendered into pages
 includes/        shared Markdown fragments (snippets)
 templates/       one template per page type
-scripts/         validator, staleness report, notebook conversion
+scripts/         validator, staleness report, notebook conversion, diagram generator
 zensical.toml    site configuration and navigation
 zoo/             untracked local working files (gitignored)
 ```

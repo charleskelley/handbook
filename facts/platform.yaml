@@ -1,7 +1,7 @@
 # Platform components, environments, quotas, and URLs.
 # Pages render these with macros, e.g. {{ platform.components.warehouse.quota }}.
 platform:
-  as_of: 2026-10-24
+  as_of: 2026-11-11
   environments:
     dev:
       purpose: Experimentation and development.
@@ -29,3 +29,61 @@ platform:
       owner: mle-lead
       docs_url: null
       support_channel: null
+    artifactory:
+      name: Artifactory
+      owner: platform-owner
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    workstations:
+      name: Cloud Workstations
+      owner: platform-owner
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    research_vms:
+      name: Research VMs
+      owner: platform-owner
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    vertex_ai:
+      name: Vertex AI
+      owner: mle-lead
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    mlflow:
+      name: MLflow tracking server
+      owner: mle-lead
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    ci:
+      name: GitLab CI
+      owner: mle-lead
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+    secrets:
+      name: Secret manager
+      owner: platform-owner
+      product: CyberArk
+      docs_url: null
+      support_channel: "*[unverified: needs source]*"
+  # Development environment and path to production. The values below that look
+  # like placeholders (example.com, your-*-project) are template placeholders a
+  # fork replaces. The rest are the team's chosen settings, which the
+  # infrastructure repository sets too.
+  dev:
+    gcp_dev_project: your-dev-project
+    gcp_prod_project: your-prod-project
+    region: us-central1
+    artifactory_url: https://artifactory.example.com
+    gitlab_url: https://gitlab.example.com
+    mlflow_url: https://mlflow.example.com      # Terraform output mlflow_url in the dev project
+    python_version: "3.12"
+    uv_version: "0.9.0"
+    workstation_machine_type: e2-standard-8
+    workstation_idle_minutes: 60
+    workstation_max_hours: 12
+    workstation_home_disk_gb: 100
+    jetbrains_toolbox_build: "*[unverified: needs source]*"   # Toolbox App build, matches the Agent in the workstation image
+    pycharm_version: "*[unverified: needs source]*"           # PyCharm backend baked into the workstation image
+    research_vm_stop: 19:00 every day, America/New_York
+    dev_table_expiry_days: 180
+    dev_scratch_expiry_days: 90

@@ -27,7 +27,7 @@ business domains, or single large tables. A smaller system is one page here.
 
 Tables start on their domain page. Structural, timeless behaviour goes in a
 page's Quirks section. Events that change how data is read are
-[insights](../insights/index.md).
+[insights](../oversight/insights/index.md).
 
 ## Pages
 
