@@ -1,7 +1,7 @@
 [project]
 site_name = "Handbook"
 site_description = "How this team works: the business, the platform, the models, the conventions."
-site_url = "https://example.com/handbook/"
+site_url = "https://charleskelley.github.io/handbook/"
 # repo_url = "https://github.com/org/handbook"
 # edit_uri = "edit/main/docs/"
 docs_dir = "docs"
