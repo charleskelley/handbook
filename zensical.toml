@@ -19,9 +19,7 @@ nav = [
     { "Operating environment" = "business/operating-environment.md" },
     { "Competitive position" = "business/competitive-position.md" },
     { "Decision inventory" = "business/decisions.md" },
-    { "KPIs" = [
-      { "Overview" = "business/kpis/index.md" },
-    ] },
+    { "KPIs" = "business/kpis/index.md" },
   ] },
   { "Data" = [
     { "Overview" = "data/index.md" },
@@ -89,7 +87,6 @@ features = [
   "content.tabs.link",
   "content.tooltips",
   "navigation.footer",
-  "navigation.indexes",
   "navigation.instant",
   "navigation.sections",
   "navigation.tabs",
