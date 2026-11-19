@@ -70,8 +70,8 @@ efficiency is judged alongside business impact rather than after it.
 
 ### Handbook to landscape mapping
 
-The handbook is an overlay on the landscape with each section mapping to one or
-more landscape elements.
+Five sections of the handbook are an overlay on the landscape, each mapping to
+one or more landscape elements.
 
 | Section | Landscape element | What it covers |
 |---|---|---|
@@ -80,6 +80,13 @@ more landscape elements.
 | [Methods](methods/index.md) | Prediction, Measure, and the Decision handoff | How the team practises applied ML, what it owes in each region, the methods it uses |
 | [Technology](technology/index.md) | Infrastructure | Platforms, environments, development tools, setup, and access |
 | [Oversight](oversight/index.md) | Monitor & Govern | What is watched on every model, the governance rules, the decision log, and the insights that change how data is read |
-| [Team](team/index.md) | The team that runs the loop | How to work with the team, onboarding, decision records |
-| [Glossary](glossary/index.md) | Reference | Business and working terms, defined once |
-| [Apps](apps/index.md) | Reference | Dashboards and companion applications |
+
+### Supporting sections
+
+Two sections sit outside the landscape and support all of it.
+
+- **[Team](team/index.md):** how to work with the team, onboarding, and
+  decision records.
+- **Reference:** the [Glossary](reference/glossary.md) of business and working
+  terms, each defined once, and [Apps](reference/apps.md), the registry of
+  dashboards and companion applications.

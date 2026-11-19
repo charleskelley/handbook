@@ -55,6 +55,13 @@ nav = [
       { "Add a language toolchain" = "technology/add-a-language-toolchain.md" },
     ] },
   ] },
+  { "Oversight" = [
+    { "Overview" = "oversight/index.md" },
+    { "Monitoring" = "oversight/monitoring.md" },
+    { "Governance" = "oversight/governance.md" },
+    { "Decision log" = "oversight/decision-log.md" },
+    { "Insights" = "oversight/insights/index.md" },
+  ] },
   { "Team" = [
     { "Overview" = "team/index.md" },
     { "How we work" = "team/how-we-work.md" },
@@ -69,15 +76,10 @@ nav = [
       { "DR-0005" = "team/decisions/DR-0005-monitor-with-vertex-and-evidently.md" },
     ] },
   ] },
-  { "Oversight" = [
-    { "Overview" = "oversight/index.md" },
-    { "Monitoring" = "oversight/monitoring.md" },
-    { "Governance" = "oversight/governance.md" },
-    { "Decision log" = "oversight/decision-log.md" },
-    { "Insights" = "oversight/insights/index.md" },
+  { "Reference" = [
+    { "Glossary" = "reference/glossary.md" },
+    { "Apps" = "reference/apps.md" },
   ] },
-  { "Glossary" = "glossary/index.md" },
-  { "Apps" = "apps/index.md" },
 ]
 
 [project.theme]

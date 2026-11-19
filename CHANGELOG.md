@@ -3,6 +3,20 @@
 Changes to the handbook specification and template. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.6.0] - 2026-11-18
+
+### Changed
+
+- The Glossary and Apps sections become two pages in a new Reference section,
+  `docs/reference/glossary.md` and `docs/reference/apps.md`. Reference has no
+  index page. Links to the old paths are updated.
+- Oversight comes before Team in the navigation and in the spec's section
+  table, so the five sections that map to the landscape come first.
+- The home page maps those five sections to the landscape in one table and
+  lists Team and Reference separately as supporting sections.
+- Section overview pages appear as the first link in the sidebar; the
+  `navigation.indexes` theme feature is off.
+
 ## [0.5.0] - 2026-11-15
 
 ### Added

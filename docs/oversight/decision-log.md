@@ -22,7 +22,7 @@ sources: []
 The record of the decisions models and rules drive, kept so that every
 decision can be audited and replayed. This is where the Decision handoff lands
 in the Monitor & Govern band. The glossary separates a
-[decision log](../glossary/index.md) from a decision record: the log holds
+[decision log](../reference/glossary.md) from a decision record: the log holds
 business decisions made at run time, the record holds the team's own.
 
 ## What a record contains

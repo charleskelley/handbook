@@ -1,5 +1,5 @@
 # Companion applications (dashboards, Streamlit and Dash apps, Flask tools).
-# docs/apps/index.md is generated from this file by a macro loop.
+# docs/reference/apps.md is generated from this file by a macro loop.
 apps:
   as_of: 2026-10-24
   items:

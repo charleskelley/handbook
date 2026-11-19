@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.5.0 · Draft**
+**Version 0.6.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. A page that does not fit
@@ -49,16 +49,16 @@ linked from here through the Apps page.
 | Data | `docs/data/` | The systems data comes from, how it is organized into domains, what each table holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
 | Methods | `docs/methods/` | How the team works with data: analysis methods and model families at the top level, development practices under `development/` | `method`, `how-to`, `general` |
 | Technology | `docs/technology/` | What the team works with: platforms, environments, development tools, setup and access recipes | `platform`, `how-to`, `general` |
-| Team | `docs/team/` | How the team works with partners, the onboarding guide, decision records | `decision-record`, `general` |
 | Oversight | `docs/oversight/` | The Monitor & Govern band: what is watched on every model and who acts, the governance rules, the decision log, and under `insights/` the index of every insight and the freestanding writeups | `insight`, `general` |
-| Glossary | `docs/glossary/` | Terms the team and its partners use, defined once, on one page | `general` |
-| Apps | `docs/apps/` | Registry of companion applications, generated from `facts/apps.yaml` | `general` |
+| Team | `docs/team/` | How the team works with partners, the onboarding guide, decision records | `decision-record`, `general` |
+| Reference | `docs/reference/` | Lookup pages: `glossary.md`, the terms the team and its partners use, defined once, on one page; and `apps.md`, the registry of companion applications, generated from `facts/apps.yaml` | `general` |
 
 Each section directory has an `index.md` of type `general` that says what the
 section holds and lists its pages. Index pages carry no facts and no numbers.
-Two exceptions: a system directory under Data, whose `index.md` is that
-system's `source-system` page, and the Business section, whose `index.md` is
-the `business-overview` page.
+Three exceptions: a system directory under Data, whose `index.md` is that
+system's `source-system` page; the Business section, whose `index.md` is
+the `business-overview` page; and Reference, which has no `index.md` because
+its two pages are listed in the navigation and on the home page.
 
 ### Business layout
 
