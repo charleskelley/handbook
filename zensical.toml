@@ -19,6 +19,7 @@ nav = [
     { "Operating environment" = "business/operating-environment.md" },
     { "Competitive position" = "business/competitive-position.md" },
     { "Decision inventory" = "business/decisions.md" },
+    { "Customer-base audit" = "business/customer-base-audit.md" },
     { "KPIs" = "business/kpis/index.md" },
   ] },
   { "Data" = [
@@ -26,6 +27,7 @@ nav = [
   ] },
   { "Methods" = [
     { "Overview" = "methods/index.md" },
+    { "Customer-base audit" = "methods/customer-base-audit.md" },
     { "Development" = [
       { "Overview" = "methods/development/index.md" },
       { "Style guides" = "methods/development/style-guide.md" },

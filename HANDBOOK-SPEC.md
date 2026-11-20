@@ -65,8 +65,12 @@ its two pages are listed in the navigation and on the home page.
 The Business index is the overview of the company. Beside it sit the decision
 inventory, three lens pages (strategy, operating environment, competitive
 position), and `docs/business/kpis/`, whose `index.md` is the KPI driver tree
-and whose other pages are one `kpi` page per metric. Fill order: overview,
-decision inventory, KPI tree and KPI pages, then the lens pages last.
+and whose other pages are one `kpi` page per metric. A report that applies an
+analysis method to the business, such as the customer-base audit, is a
+`general` page here that links to its `method` page under Methods: the method
+page holds the framework, the Business page holds the findings. Fill order:
+overview, decision inventory, KPI tree and KPI pages, then the lens pages
+last.
 
 ### Oversight layout
 

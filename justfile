@@ -34,9 +34,10 @@ lint:
 stale:
     {{docs}} python scripts/stale_report.py docs
 
-# Regenerate the landscape diagram on the Methods page (docs/assets/)
+# Regenerate the generated diagrams (docs/assets/)
 diagram:
     {{docs}} --with pillow python scripts/dpom_diagram.py
+    {{docs}} python scripts/customer_base_audit_diagram.py
 
 # Run the same checks as CI: validate, lint, build
 check: validate lint build

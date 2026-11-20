@@ -91,14 +91,17 @@ enters at.
 ## Pages
 
 In fill order. Fill this page first, then the decision inventory, then the
-KPI tree and its pages. The three lens pages come last.
+KPI tree and its pages, then the customer-base audit once transaction data
+is available. The three lens pages come last.
 
 1. [Decision inventory](decisions.md): the decisions the business makes
    repeatedly, each a candidate outcome loop.
 2. [KPIs](kpis/index.md): the driver tree, and one page per metric.
-3. [Strategy](strategy.md): the stated priorities and where the company is
+3. [Customer-base audit](customer-base-audit.md): what the customers look
+   like when revenue and profit are read by customer.
+4. [Strategy](strategy.md): the stated priorities and where the company is
    going.
-4. [Operating environment](operating-environment.md): the industry and the
+5. [Operating environment](operating-environment.md): the industry and the
    external forces on it.
-5. [Competitive position](competitive-position.md): who the company competes
+6. [Competitive position](competitive-position.md): who the company competes
    with and how it differs.

@@ -163,8 +163,11 @@ Not yet practised beyond that, because Measure is not yet built.
 
 ## Pages
 
+- [Customer-base audit](customer-base-audit.md): a descriptive framework for
+  reading revenue and profit by customer, through five lenses.
 - [Development practices](development/index.md): style guides, conventions,
   environments, path to production, experiment tracking, model monitoring.
 
-*No method pages yet. Start with the methods used on the outcome the team is
-most often asked about.*
+Method pages cover descriptive and diagnostic analyses as well as models.
+Add the methods used on the outcome the team is most often asked about
+next.
