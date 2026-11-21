@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 506 204" width="506" height="204" font-family="'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<text x="174.0" y="22.0" font-size="12" font-weight="400" fill="#4b5861" text-anchor="middle">history used to fit</text>
+<text x="291.0" y="22.0" font-size="12" font-weight="400" fill="#4b5861" text-anchor="middle">scored</text>
+<text x="86.0" y="48.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="end">origin 1</text>
+<rect x="96.0" y="34.0" width="154.0" height="20.0" rx="3" fill="#126128" fill-opacity="0.28" stroke="#126128" stroke-width="1.5"/>
+<rect x="252.0" y="34.0" width="76.0" height="20.0" rx="3" fill="none" fill-opacity="1.0" stroke="#1c2024" stroke-width="1.5"/>
+<text x="86.0" y="82.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="end">origin 2</text>
+<rect x="96.0" y="68.0" width="206.0" height="20.0" rx="3" fill="#126128" fill-opacity="0.28" stroke="#126128" stroke-width="1.5"/>
+<rect x="304.0" y="68.0" width="76.0" height="20.0" rx="3" fill="none" fill-opacity="1.0" stroke="#1c2024" stroke-width="1.5"/>
+<text x="86.0" y="116.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="end">origin 3</text>
+<rect x="96.0" y="102.0" width="258.0" height="20.0" rx="3" fill="#126128" fill-opacity="0.28" stroke="#126128" stroke-width="1.5"/>
+<rect x="356.0" y="102.0" width="76.0" height="20.0" rx="3" fill="none" fill-opacity="1.0" stroke="#1c2024" stroke-width="1.5"/>
+<text x="86.0" y="150.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="end">origin 4</text>
+<rect x="96.0" y="136.0" width="310.0" height="20.0" rx="3" fill="#126128" fill-opacity="0.28" stroke="#126128" stroke-width="1.5"/>
+<rect x="408.0" y="136.0" width="76.0" height="20.0" rx="3" fill="none" fill-opacity="1.0" stroke="#1c2024" stroke-width="1.5"/>
+<line x1="96.0" y1="174.0" x2="486.0" y2="174.0" stroke="#6b7b86" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="291.0" y="192.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="middle">time →</text>
+</svg>

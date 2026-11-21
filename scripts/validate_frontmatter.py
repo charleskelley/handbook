@@ -45,9 +45,9 @@ REQUIRED_HEADINGS: dict[str, list[str]] = {
         "Columns that matter", "Quality checks", "Known issues", "Used by",
     ],
     "method": [
-        "What it is", "Where it applies to our data", "When it is the right choice",
-        "When it is not", "Lessons learned", "Reference implementations",
-    ],
+        "What it is", "When it is the right choice", "When it is not",
+        "Where it applies to our data", "Lessons learned", "Reference implementations",
+    ],  # the sections every method page has; depth and the causal tag add more
     "platform": [
         "What it is for", "Architecture", "How we use it", "Limits and quotas",
         "Owner and support path", "Runbooks",
@@ -61,6 +61,23 @@ REQUIRED_HEADINGS: dict[str, list[str]] = {
         "Does it still hold",
     ],
 }
+# A method page's depth adds sections, and so does the `causal` tag. Each entry is
+# (heading, the required heading it goes before, or None for the end).
+METHOD_DEPTH_HEADINGS: dict[str, list[tuple[str, str | None]]] = {
+    "build": [
+        ("Building the outputs", "Where it applies to our data"),
+        ("Checks", "Where it applies to our data"),
+        ("Pitfalls", "Where it applies to our data"),
+        ("Worked examples", "Where it applies to our data"),
+    ],
+    "guide": [
+        ("Common approaches", "Where it applies to our data"),
+        ("Reading a result you did not produce", "Where it applies to our data"),
+        ("Further reading", None),
+    ],
+}
+METHOD_CAUSAL_HEADING = ("Assumptions", "Where it applies to our data")
+METHOD_CAUSAL_AFTER = "When it is not"
 # A source-system page that is a system directory's index also maps its contents.
 SYSTEM_INDEX_HEADING = "What's here"
 PAGE_TYPES = {*REQUIRED_HEADINGS, "general"}
@@ -87,6 +104,7 @@ class FrontMatter(BaseModel):
     review_cadence: Literal["30d", "90d", "180d", "365d"]
     tags: list[str] = []
     sources: list[str] = []
+    depth: Literal["build", "guide"] | None = None
 
     @field_validator("type")
     @classmethod
@@ -140,9 +158,24 @@ def h2_headings(text: str) -> list[str]:
     return headings
 
 
-def heading_errors(page_type: str, text: str, is_system_index: bool = False) -> list[str]:
+def method_headings(depth: str | None, causal: bool) -> list[str]:
+    """Return the required headings of a method page of this depth, in order."""
+    required = list(REQUIRED_HEADINGS["method"])
+    if causal:
+        required.insert(required.index(METHOD_CAUSAL_AFTER) + 1, METHOD_CAUSAL_HEADING[0])
+    for name, before in METHOD_DEPTH_HEADINGS.get(depth or "", []):
+        required.insert(required.index(before) if before else len(required), name)
+    return required
+
+
+def heading_errors(
+    page_type: str, text: str, is_system_index: bool = False,
+    depth: str | None = None, causal: bool = False,
+) -> list[str]:
     """Return problems with a page's required headings, missing or out of order."""
     required = list(REQUIRED_HEADINGS.get(page_type, []))
+    if page_type == "method":
+        required = method_headings(depth, causal)
     if page_type == "source-system" and is_system_index:
         required.append(SYSTEM_INDEX_HEADING)
     found = h2_headings(text)
@@ -172,7 +205,14 @@ def validate(docs_dir: Path) -> list[str]:
                 errors.append(f"{path}: {loc}: {err['msg']}")
             continue
         is_system_index = path.name == "index.md" and path.parent.parent == docs_dir / "data"
-        errors += [f"{path}: {e}" for e in heading_errors(data["type"], text, is_system_index)]
+        depth, is_method = data.get("depth"), data["type"] == "method"
+        if is_method != (depth is not None):
+            errors.append(f"{path}: depth is required on a method page and allowed on no other")
+        causal = "causal" in data.get("tags", [])
+        errors += [
+            f"{path}: {e}"
+            for e in heading_errors(data["type"], text, is_system_index, depth, causal)
+        ]
         if data["status"] == "active" and (n := len(ADD_PROMPT_RE.findall(body_of(text)))):
             errors.append(f"{path}: active page still has {n} wireframe prompt(s) (*Add:*)")
     return errors
@@ -186,7 +226,14 @@ def validate_templates(templates_dir: Path) -> list[str]:
     errors += [f"{templates_dir}: {t}.md matches no strict type" for t in sorted(found - set(REQUIRED_HEADINGS))]
     for page_type in sorted(found & set(REQUIRED_HEADINGS)):
         path = templates_dir / f"{page_type}.md"
-        errors += [f"{path}: {e}" for e in heading_errors(page_type, path.read_text(encoding="utf-8"))]
+        text = path.read_text(encoding="utf-8")
+        # The method template carries the sections of both depths and of a causal page.
+        depths = list(METHOD_DEPTH_HEADINGS) if page_type == "method" else [None]
+        for depth in depths:
+            errors += [
+                f"{path}: {e}"
+                for e in heading_errors(page_type, text, depth=depth, causal=page_type == "method")
+            ]
     return errors
 
 

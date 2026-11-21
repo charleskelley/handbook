@@ -38,6 +38,8 @@ stale:
 diagram:
     {{docs}} --with pillow python scripts/dpom_diagram.py
     {{docs}} python scripts/customer_base_audit_diagram.py
+    {{docs}} python scripts/rfm_diagram.py
+    {{docs}} python scripts/method_diagrams.py
 
 # Run the same checks as CI: validate, lint, build
 check: validate lint build

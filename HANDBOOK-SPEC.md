@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.6.0 · Draft**
+**Version 0.8.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. A page that does not fit
@@ -47,7 +47,7 @@ linked from here through the Apps page.
 | Home | `docs/index.md` | What the handbook is, how to use it, where each reader starts | `general` |
 | Business | `docs/business/` | How the company and its products make money, the strategies that matter, the decisions the business makes, the KPIs and how they relate | `business-overview`, `decision-inventory`, `kpi`, `general` |
 | Data | `docs/data/` | The systems data comes from, how it is organized into domains, what each table holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
-| Methods | `docs/methods/` | How the team works with data: analysis methods and model families at the top level, development practices under `development/` | `method`, `how-to`, `general` |
+| Methods | `docs/methods/` | How the team works with data, in three groups: Analysis and Modeling, whose `method` pages sit at the top level, and Development, the practices under `development/` | `method`, `how-to`, `general` |
 | Technology | `docs/technology/` | What the team works with: platforms, environments, development tools, setup and access recipes | `platform`, `how-to`, `general` |
 | Oversight | `docs/oversight/` | The Monitor & Govern band: what is watched on every model and who acts, the governance rules, the decision log, and under `insights/` the index of every insight and the freestanding writeups | `insight`, `general` |
 | Team | `docs/team/` | How the team works with partners, the onboarding guide, decision records | `decision-record`, `general` |
@@ -71,6 +71,35 @@ analysis method to the business, such as the customer-base audit, is a
 page holds the framework, the Business page holds the findings. Fill order:
 overview, decision inventory, KPI tree and KPI pages, then the lens pages
 last.
+
+### Methods layout
+
+Methods has three groups. The navigation and the Methods index show them.
+
+- **Analysis.** Methods whose product is a finding a person interprets: a
+  description, a comparison, an estimate of an effect. Descriptive methods,
+  experiments, and causal designs are here. A causal method may fit a model
+  on the way to its estimate, and it is still an analysis: nothing is
+  deployed, and the work ends in a report.
+- **Modeling.** Methods whose product is an artifact built to an objective
+  that then runs on new data: it is trained, deployed, and monitored.
+- **Development.** The practices that carry both: style, conventions,
+  environments, the path to production.
+
+A `method` page is filed by what it teaches the reader to produce, not by the
+technique. An uplift model that scores customers for targeting is Modeling.
+The experiment that measures whether the targeting worked is Analysis. A
+technique used both ways is filed by its main use here, or is two pages that
+link.
+
+Analysis and Modeling pages are files directly under `docs/methods/`. The
+group is not a directory, so regrouping a page breaks no link. A group
+appears in the navigation once it has a page. The kind of question a method
+answers, such as descriptive, causal, or predictive, is a tag.
+
+A principle that several methods rest on, such as what separates a
+directional reading from a causal claim, is a `general` page in the group it
+serves.
 
 ### Oversight layout
 
@@ -111,6 +140,7 @@ status: active                     # required, one of: draft, active, deprecated
 last_reviewed: 2026-01-15          # required, ISO date the content was last confirmed correct
 review_cadence: 90d                # required, one of: 30d, 90d, 180d, 365d
 tags: [retention, promo]           # optional, lowercase kebab-case strings
+depth: build                       # method pages only, and required there: build or guide
 sources:                           # optional, where the facts on this page came from
   - "Finance monthly pack, Jan 2026"
 ---
@@ -126,6 +156,8 @@ Rules:
   renderer's own marker beside a deprecated one, nothing beside an active one.
   Hovering the marker names the status. A page loses its pencil only when an
   owner reviews it and sets `status: active`.
+- `depth` is set on every `method` page and on no other. See
+  [method](#method-methods).
 - `owner` is a role where possible (`ds-lead`, `platform-owner`) so pages
   survive staff changes.
 - Quote `title` when it contains a colon (every decision record does), or YAML
@@ -225,15 +257,54 @@ not); **Known issues** (current defects); **Used by** (links to KPI and method
 pages). Optional: **Access** (link to the how-to); **Quirks**; **Insights**.
 
 ### method (Methods)
-Purpose: one page per algorithm or analysis method as used here, from gradient
-boosting to uplift modeling to a difference-in-differences design. Required:
-**What it is** (one paragraph for a technical reader); **Where it applies to our
-data** (the business questions and datasets it suits, linked); **When it is the
-right choice**; **When it is not**; **Lessons learned** (dated bullets, each with
-a cause); **Reference implementations** (links). Optional: **Causal diagram**;
-**Worked examples**; **What was measured afterward** (the outcome against its
-counterfactual, or an honest note that it was not measured); **Open questions**;
-**Insights**.
+Purpose: one page per algorithm, analysis method, or recurring problem as
+worked here, from gradient boosting to a difference-in-differences design to
+churn prediction. A technique page says how the technique works. A problem
+page says how the problem is framed and which techniques answer it.
+
+A method page has one of two depths, set in `depth`.
+
+- **build.** The full contract, for a method the team carries out itself. A
+  reader can build the analysis or the model from the page.
+- **guide.** Orientation, for a method the team must be able to interpret,
+  question, and one day build. It says what the approaches are, how to read
+  a result someone else produced, and where the canonical literature is. A
+  guide is promoted to build depth when the team builds the method.
+
+The page follows the reader's questions in four parts, in this order.
+
+1. **Decide.** Required: **What it is** (one paragraph for a technical
+   reader); **When it is the right choice**; **When it is not**. A page
+   tagged `causal`, such as an experiment or a causal design, also requires
+   **Assumptions** (what must hold for the estimate to mean what it says, and
+   how each is checked). Optional: **Causal diagram**.
+2. **Understand.** The method's concepts, under headings of the page's own.
+   The data the method needs (each table's grain and columns) and a
+   definition of every quantity it names belong here. Required on a guide,
+   optional at build depth: **Common approaches** (a table: each approach,
+   what it needs, what it rests on, and its main weakness); **Reading a
+   result you did not produce** (the questions to ask of a number that came
+   from a tool, a vendor, or another team).
+3. **Build.** What a reader needs to carry the method out, as contracts and
+   not code. Required at build depth, optional on a guide: **Building the
+   outputs** (each output's rows, columns, and form, and any defaults for the
+   method's choices); **Checks** (what must reconcile or hold before any
+   output is read); **Pitfalls**; **Worked examples** (the arithmetic on a
+   small case; made-up figures are labelled as made up).
+4. **Here.** Required: **Where it applies to our data** (the business
+   questions and datasets it suits, linked, and the choices the team has
+   settled on); **Lessons learned** (dated bullets, each with a cause);
+   **Reference implementations** (links). Optional: **What was measured
+   afterward** (the outcome against its counterfactual, or an honest note
+   that it was not measured); **Open questions**; **Insights**.
+
+**Further reading** follows, required on a guide and optional at build depth:
+the canonical works on the method, each with a line on what to read it for.
+**Sources**, the published work the page itself rests on, is the last
+section where there is one.
+
+A citation is checked against the publisher's or a library's record before it
+is written. One that cannot be checked carries the unverified marker.
 
 ### platform (Technology)
 Purpose: describe one platform component the team depends on. Required:

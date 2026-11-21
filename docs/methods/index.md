@@ -163,11 +163,111 @@ Not yet practised beyond that, because Measure is not yet built.
 
 ## Pages
 
-- [Customer-base audit](customer-base-audit.md): a descriptive framework for
-  reading revenue and profit by customer, through five lenses.
+The pages are in three groups. A method is filed by what it produces, not by
+the technique it uses.
+
+Each method page is at one of two depths, marked beside it below. A **build**
+page is the full contract: a reader can carry the method out from it. A
+**guide** page is orientation: what the approaches are, how to question a
+result someone else produced, and where the canonical reading is. A guide
+becomes a build page when the team builds the method.
+
+### Analysis
+
+Methods that end in a finding a person interprets: a description, a
+comparison, or an estimate of an effect. Experiments and causal designs
+belong here, including those that fit a model on the way to the estimate.
+
+Understanding the business:
+
+- [Customer-base audit](customer-base-audit.md) (build): a descriptive
+  framework for reading revenue and profit by customer, through five lenses.
+- [RFM analysis](rfm-analysis.md) (build): customers scored and grouped by
+  how recently, how often, and how much they bought.
+- [Survival analysis](survival-analysis.md) (build): how long until
+  something happens, when for many customers it has not happened yet.
+- [Decomposing a change](decomposing-a-change.md) (build): splitting the
+  movement in a number into rate and mix, components, or price, volume, and
+  mix.
+- [Funnel analysis](funnel-analysis.md) (guide): where along a path
+  customers are lost, for the acquisition, retention, and development
+  questions an audit raises.
+- [Segmentation](segmentation.md) (guide): dividing customers into groups
+  that will be treated differently.
+
+Experiments and causal claims:
+
+- [Directional versus causal](directional-versus-causal.md) (principles):
+  what separates "it moved" from "the action moved it", and the grades of
+  evidence.
+- [Causal diagrams](causal-diagrams.md) (guide): drawing what causes what,
+  and deciding what to adjust for.
+- [Stating uncertainty](stating-uncertainty.md) (principles): what to
+  report beside every estimate.
+- [Experiments and lift tests](experiments-and-lift-tests.md) (build):
+  designing, sizing, and analysing a randomized test, and reading a lift a
+  tool reports.
+- [Measuring impact without an experiment](measuring-impact-without-an-experiment.md)
+  (guide): choosing a design when randomization is not possible.
+- [Difference-in-differences](difference-in-differences.md) (build): a
+  change some units got and others did not.
+- [Matching](matching.md) (guide): making groups alike, to analyse
+  observational data and to design tests on few units.
+- [Synthetic control](synthetic-control.md) (guide): a comparison built
+  from untreated units, for a change to one market or region.
+- [Marketing mix modeling](marketing-mix-modeling.md) (guide): sales
+  explained by marketing over time, and how far to trust it.
+
+### Modeling
+
+Methods that end in an artifact built to an objective, which then runs on new
+data and is deployed and monitored.
+
+- [Framing and evaluating a prediction](framing-and-evaluating-a-prediction.md)
+  (build): stating what is predicted, for what decision, and showing the
+  model beats the baseline. Every model page leans on it.
+- [Linear and logistic regression](regression.md) (build): the adjustment
+  tool for analysis and the baseline for every prediction.
+- [Gradient-boosted trees](gradient-boosted-trees.md) (guide): the default
+  step up from regression for tabular data.
+- [Churn and propensity models](churn-and-propensity.md) (build): scoring
+  customers on what they will do next. The recommended first model to take
+  end to end.
+- [Customer lifetime value](customer-lifetime-value.md) (build): what a
+  customer will be worth from now on.
+- [Time-series forecasting](time-series-forecasting.md) (build): future
+  values of a number recorded over time.
+- [Uplift modeling](uplift-modeling.md) (guide): predicting whom an action
+  will change.
+- [Anomaly detection](anomaly-detection.md) (guide): finding what does not
+  fit, on data that is uneven to begin with.
+- [Recommenders](recommenders.md) (guide): choosing which few items to show
+  each customer.
+
+### Development
+
 - [Development practices](development/index.md): style guides, conventions,
   environments, path to production, experiment tracking, model monitoring.
 
-Method pages cover descriptive and diagnostic analyses as well as models.
-Add the methods used on the outcome the team is most often asked about
-next.
+### Where to start
+
+Two threads through these pages take a new team end to end.
+
+The customer thread follows one loop of the landscape above. Describe the
+customers with the [customer-base audit](customer-base-audit.md) and
+[RFM analysis](rfm-analysis.md). Read
+[framing and evaluating a prediction](framing-and-evaluating-a-prediction.md),
+then build a [churn model](churn-and-propensity.md) on features that are the
+RFM measures as of a date, first as a [regression](regression.md). Test the
+action the scores are used for with a
+[holdout](experiments-and-lift-tests.md). That closes the loop from Outcome
+through Measure with nothing but the transaction history.
+
+The planning thread is
+[time-series forecasting](time-series-forecasting.md) for finance and
+operations, with [decomposing a change](decomposing-a-change.md) for the
+question that follows every forecast miss.
+
+Read [directional versus causal](directional-versus-causal.md) and
+[stating uncertainty](stating-uncertainty.md) before presenting anything to
+a partner.

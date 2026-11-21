@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 136" width="510" height="136" font-family="'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<rect x="20.0" y="40.0" width="258.0" height="34.0" rx="3" fill="#126128" fill-opacity="0.28" stroke="#126128" stroke-width="1.5"/>
+<text x="150.0" y="61.0" font-size="12" font-weight="600" fill="#1c2024" text-anchor="middle">observation window: features</text>
+<rect x="320.0" y="40.0" width="170.0" height="34.0" rx="3" fill="none" fill-opacity="1.0" stroke="#1c2024" stroke-width="1.5"/>
+<text x="405.0" y="61.0" font-size="12" font-weight="600" fill="#1c2024" text-anchor="middle">outcome window: label</text>
+<line x1="280.0" y1="24.0" x2="280.0" y2="90.0" stroke="#1c2024" stroke-width="2" stroke-opacity="1.0"/>
+<text x="280.0" y="18.0" font-size="12" font-weight="600" fill="#1c2024" text-anchor="middle">as-of date: the prediction is made</text>
+<text x="300.0" y="88.0" font-size="11" font-weight="400" fill="#6b7b86" text-anchor="middle">gap</text>
+<line x1="20.0" y1="108.0" x2="490.0" y2="108.0" stroke="#6b7b86" stroke-width="1.0" stroke-opacity="1.0"/>
+<text x="255.0" y="126.0" font-size="12" font-weight="500" fill="#4b5861" text-anchor="middle">time →</text>
+</svg>
