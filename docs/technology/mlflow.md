@@ -9,6 +9,7 @@ review_cadence: 180d
 tags: [mlflow, experiments]
 sources:
   - "https://mlflow.org/docs/latest/self-hosting/deploy-to-cloud/gcp/"
+  - "https://mlflow.org/docs/latest/ml/tracking/autolog/"
 ---
 
 # MLflow tracking server
@@ -49,6 +50,27 @@ built by CI from a pinned MLflow version.
 - The UI at the same address, for comparing runs and reading artifacts.
 - Fixtures do not go here: they go to the governed bucket, and the run records
   where.
+
+### What to log, by library
+
+Params are what you need to re-run the fit. Metrics are what you use to choose
+between fits. Anything else is an artifact. The rule is on
+[Experiment tracking](../methods/development/experiment-tracking.md#what-to-log).
+
+| Library | Params | Metrics | Artifact |
+|---|---|---|---|
+| scikit-learn | `model.get_params()`, flattened to `clf__C` style | Your `evaluate()`, or `mlflow.models.evaluate` for the standard set with plots | The fitted pipeline, if you will come back to it |
+| statsmodels | Formula or exog names, family, fit method | `aic`, `bic`, `llf`, pseudo R², convergence, plus your decision metric | `summary().as_text()`: the coefficient table is what you reread |
+| PyTorch | The hyperparameter dict you already have | Final-epoch metrics | The loss curve as a CSV. Time-series metrics need a TensorBoard instance, which we do not run |
+| scipy | Initial guess, bounds, method | Fitted parameters, residual norm, `success`, `nfev` | None |
+
+A grid search is one decision, not fifty runs: log the grid as params, the best
+point's metrics, and `cv_results_` as a CSV artifact.
+
+Autolog is off. MLflow's `autolog()` covers scikit-learn and statsmodels, but it
+logs every `fit()` inside a cross-validation and knows nothing about the data
+snapshot. Switch it on in a cell for a grid search if you want the parent and
+child runs; otherwise log what you chose.
 
 ## Limits and quotas
 

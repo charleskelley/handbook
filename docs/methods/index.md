@@ -53,8 +53,8 @@ is made about, the signals known at decision time, and nothing from after it.
 [Sources](../data/sources/index.md), domains as subpages, and the trust and quirks of
 each table written where the table is described. Level 1 of the
 [feature rule](development/experiment-tracking.md#feature-engineering-where-each-transformation-lives):
-joins, filters, and history aggregations live in SQL in the feature vertical,
-run once, and serve every consumer. Development can read production data, so
+joins, filters, and history aggregations live in the feature factory, run
+once, and serve every consumer. Development can read production data, so
 data never lands on a machine: see
 [Development environments](development/environments.md#data-never-lands-on-a-machine).
 

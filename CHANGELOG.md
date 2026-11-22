@@ -22,6 +22,16 @@ Changes to the handbook specification and template. The format follows
 - The five decision records, all still proposed, name roles in place of
   products. MLflow and Evidently stay named, as the tools those records
   choose. DR-0001, DR-0003, and DR-0005 have new titles.
+- Experiment tracking: the holdout is out of time and every choice is made
+  in time, with cross-validation. The fixture is the out-of-time holdout
+  with its scores. In-time folds are blocked by time or grouped by entity,
+  the gap between the in-time and out-of-time scores is recorded, and a
+  failed holdout is not tuned against. The per-library logging table moves
+  to the MLflow page.
+- Model monitoring keeps only how a monitor is built and links to
+  Predictions, Training data, and Oversight for the rest. The performance
+  alert is on the main measure in the model's framing, computed on units
+  that were scored and left alone.
 
 ## [0.9.0] - 2026-11-22
 

@@ -132,7 +132,11 @@ data as the future will be.
   not happened when the test predictions were made.
 - **Three sets, not two.** Training data to fit, validation data to choose
   between models and settings, and test data used once at the end. A test
-  set that has been used to make choices is no longer a test.
+  set that has been used to make choices is no longer a test. Validation
+  may be cross-validation within the training period, because the test
+  data comes after all of it and is used for no choice. How the folds are
+  built is on
+  [In-time folds](development/experiment-tracking.md#in-time-folds).
 - **More than one test period** where possible. Performance in one quarter
   can be luck or an unusual quarter.
 
