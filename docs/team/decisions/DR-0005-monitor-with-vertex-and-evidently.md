@@ -1,5 +1,5 @@
 ---
-title: "DR-0005: Vertex AI Model Monitoring alerts, Evidently explains, people promote"
+title: "DR-0005: A managed monitor alerts, Evidently explains, people promote"
 type: decision-record
 owner: mle-lead
 audience: [all]
@@ -9,7 +9,7 @@ review_cadence: 365d
 tags: [monitoring, mlops]
 ---
 
-# DR-0005: Vertex AI Model Monitoring alerts, Evidently explains, people promote
+# DR-0005: A managed monitor alerts, Evidently explains, people promote
 
 ## Context
 
@@ -17,26 +17,27 @@ tags: [monitoring, mlops]
 whose top rung needs a trigger, and nothing was watching production models.
 Labels arrive days to months after a prediction, by domain, so a drift signal
 is the only early warning, and a performance signal needs a label delay built
-into it. Vertex AI Model Monitoring works on models in the registry even when
-served elsewhere, takes BigQuery as its source, and alerts; it does not explain.
+into it. The platform's model monitoring service works on models in the
+registry even when they are served elsewhere, takes the warehouse as its
+source, and alerts; it does not explain.
 Evidently produces the per-feature, per-metric view a person needs to decide.
 
 ## Decision
 
 Three layers, all standard for every production model: the score job appends
-every prediction to a BigQuery prediction log; Vertex AI Model Monitoring
-watches feature and prediction drift against the training snapshot, daily, per
+every prediction to a prediction log in the warehouse; the platform's model
+monitoring service watches feature and prediction drift against the training snapshot, daily, per
 champion version, created at promotion; a weekly job computes performance from
-labeled predictions, after the model's label delay, and alerts through Cloud
-Monitoring. Where a model needs the deeper look, a weekly Evidently report is
+labeled predictions, after the model's label delay, and alerts through the
+platform's alerting service. Where a model needs the deeper look, a weekly Evidently report is
 saved as a static page in the reports bucket. Triggered retraining is optional
 per model and only ever produces a challenger. Promotion is manual.
 
 ## Alternatives considered
 
-- **A package-owned drift job instead of Vertex AI Model Monitoring.** Less
-  Vertex-specific code, but a drift engine to maintain and no managed
-  alerting. Kept as the fallback if Model Monitoring proves unfit.
+- **A package-owned drift job instead of the platform's monitoring service.**
+  Less platform-specific code, but a drift engine to maintain and no managed
+  alerting. Kept as the fallback if the service proves unfit.
 - **Evidently as the alerting layer.** Its tests can fail a job, but then the
   report is both the signal and the explanation, and the signal has no
   notification channel of its own. Reports are read, not watched.

@@ -1,30 +1,30 @@
 ---
-title: "DR-0001: Production runs only CI-built artifacts from Artifactory"
+title: "DR-0001: Production runs only CI-built artifacts from the artifact registry"
 type: decision-record
 owner: mle-lead
 audience: [all]
 status: draft
 last_reviewed: 2026-11-11
 review_cadence: 365d
-tags: [production, artifactory, ci]
+tags: [production, artifacts, ci]
 ---
 
-# DR-0001: Production runs only CI-built artifacts from Artifactory
+# DR-0001: Production runs only CI-built artifacts from the artifact registry
 
 ## Context
 
-The team develops on laptops, Cloud Workstations, research VMs, and notebooks,
-in several languages, and deploys to Google Cloud. Without a rule, anything that
-works on one of those machines can reach production: a notebook on a schedule, a
+The team develops on laptops, cloud workstations, research machines, and
+notebooks, in several languages, and deploys to one cloud. Without a rule,
+anything that works on one of those machines can reach production: a notebook on a schedule, a
 container built on a laptop, or an image saved from a VM. Each is hard to
 reproduce, hard to audit, and impossible to rebuild after the machine is gone.
 Security also requires that machines do not download from public registries.
 
 ## Decision
 
-1. Every external input comes through Artifactory: packages, toolchains, OS
-   packages, base images, and pretrained models.
-2. Production runs only artifacts built by GitLab CI from a commit: packages and
+1. Every external input comes through the artifact registry: packages,
+   toolchains, OS packages, base images, and pretrained models.
+2. Production runs only artifacts built by CI from a commit: packages and
    containers built from them. CI publishes to dev repositories, tests the
    published artifact, and promotes the same bytes to release repositories.
    Production reads only the release repositories.
@@ -33,10 +33,11 @@ Security also requires that machines do not download from public registries.
 
 ## Alternatives considered
 
-- **Everything inside Vertex AI.** Fewer products, but Vertex has no development
-  environment for packaged code, and it does not replace the organization's
-  artifact store and CI, which production rules need on any platform. We use
-  Vertex for the ML-specific parts.
+- **Everything inside the cloud's ML platform.** Fewer products, but the ML
+  platform has no development environment for packaged code, and it does not
+  replace the organization's artifact registry and CI, which production
+  rules need on any platform. We use the ML platform for the ML-specific
+  parts.
 - **One local repository per type, with releases told apart by version.**
   Simpler, but the separation rests on discipline, not permissions.
 - **Scheduled notebooks in production**, as some large teams do. Rejected: hidden
@@ -48,8 +49,8 @@ Security also requires that machines do not download from public registries.
 
 - Every project needs a lockfile, a package build, and the standard pipeline.
   The project template provides them.
-- Google runtimes pull through an Artifact Registry cache of Artifactory, which
-  must be maintained.
+- The cloud's runtimes pull through a cache of the artifact registry kept
+  inside the cloud, which must be maintained.
 - A release takes a tag and a pipeline run, even for a small fix.
 - Untested code cannot reach production by mistake, and every release can be
   traced to a commit and an approval.

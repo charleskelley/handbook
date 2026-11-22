@@ -19,6 +19,9 @@ Changes to the handbook specification and template. The format follows
 - Development environments names roles, not products, and places every way
   of working inside dev, the environment where people act under their own
   identity.
+- The five decision records, all still proposed, name roles in place of
+  products. MLflow and Evidently stay named, as the tools those records
+  choose. DR-0001, DR-0003, and DR-0005 have new titles.
 
 ## [0.9.0] - 2026-11-22
 
