@@ -76,7 +76,7 @@ one or more landscape elements.
 | Section | Landscape element | What it covers |
 |---|---|---|
 | [Business](business/index.md) | Outcome, the entry point | How the company makes money, the strategies that matter, the KPIs and what they mean |
-| [Data](data/index.md) | Data | Where the data comes from, how the warehouse is organized, what each dataset holds and how far to trust it |
+| [Data](data/index.md) | Data | The chain from source to score: the sources, the feature factory, the feature store, training data, and predictions, and how far to trust each |
 | [Methods](methods/index.md) | Prediction, Measure, and the Decision handoff | How the team practises applied ML, what it owes in each region, the methods it uses |
 | [Technology](technology/index.md) | Infrastructure | Platforms, environments, development tools, setup, and access |
 | [Oversight](oversight/index.md) | Monitor & Govern | What is watched on every model, the governance rules, the decision log, and the insights that change how data is read |

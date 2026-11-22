@@ -1,6 +1,6 @@
 # Handbook specification
 
-**Version 0.8.0 · Draft**
+**Version 0.9.0 · Draft**
 
 This document is the contract for everything under `docs/`. People and automated
 assistants follow it when they add or change a page. A page that does not fit
@@ -46,7 +46,7 @@ linked from here through the Apps page.
 |---|---|---|---|
 | Home | `docs/index.md` | What the handbook is, how to use it, where each reader starts | `general` |
 | Business | `docs/business/` | How the company and its products make money, the strategies that matter, the decisions the business makes, the KPIs and how they relate | `business-overview`, `decision-inventory`, `kpi`, `general` |
-| Data | `docs/data/` | The systems data comes from, how it is organized into domains, what each table holds and how far it can be trusted | `source-system`, `data-domain`, `dataset` |
+| Data | `docs/data/` | The chain data moves along, from the systems it comes from to the scores a model writes: sources, the feature factory, the feature store, training data, and predictions; what each stage holds and how far it can be trusted | `source-system`, `data-domain`, `dataset`, `general` |
 | Methods | `docs/methods/` | How the team works with data, in three groups: Analysis and Modeling, whose `method` pages sit at the top level, and Development, the practices under `development/` | `method`, `how-to`, `general` |
 | Technology | `docs/technology/` | What the team works with: platforms, environments, development tools, setup and access recipes | `platform`, `how-to`, `general` |
 | Oversight | `docs/oversight/` | The Monitor & Govern band: what is watched on every model and who acts, the governance rules, the decision log, and under `insights/` the index of every insight and the freestanding writeups | `insight`, `general` |
@@ -55,8 +55,8 @@ linked from here through the Apps page.
 
 Each section directory has an `index.md` of type `general` that says what the
 section holds and lists its pages. Index pages carry no facts and no numbers.
-Three exceptions: a system directory under Data, whose `index.md` is that
-system's `source-system` page; the Business section, whose `index.md` is
+Three exceptions: a system directory under Data's `sources/`, whose `index.md`
+is that system's `source-system` page; the Business section, whose `index.md` is
 the `business-overview` page; and Reference, which has no `index.md` because
 its two pages are listed in the navigation and on the home page.
 
@@ -115,12 +115,29 @@ A page that needs both is two pages that link.
 
 ### Data layout
 
-Each system with many tables gets a directory named for what people call it,
-for example `docs/data/bigquery/`. Its `index.md` is the system's overview and
-the map of everything below it. Subpages are domains, organized by business
+The section follows the chain data moves along, with one `general` page for
+each stage: `sources/index.md`, `factory.md`, `store.md`, `training-data.md`,
+and `predictions.md`. Each says what the stage holds, what it promises, and
+the practices for it. The section's own `index.md` shows the chain and says
+where the team's own guarantees start.
+
+System pages live under `sources/`. Each system with many tables gets a
+directory named for what people call it, for example
+`docs/data/sources/bigquery/`. Its `index.md` is the system's overview and the
+map of everything below it. Subpages are domains, organized by business
 concern, or dataset pages for single large tables that span domains. Special
 sources that fit neither are carved out and noted in the `index.md`. A smaller
-system is a single `source-system` page, `docs/data/<system>.md`.
+system is a single `source-system` page, `docs/data/sources/<system>.md`.
+
+The other four stages are one page each, and stop at the concept. Their
+detail is not kept in the handbook. The factory and the store are projects
+with their own documentation, and a model's training data and predictions are
+documented in the model's repository. Each of the four pages ends with a note
+admonition that says what that documentation must carry. On the factory and
+store pages the note is replaced by a link to the project's documentation once
+it is published. On the training data and predictions pages the note stays,
+because it is the standard a model's repository is reviewed against before the
+model goes to production.
 
 A Data page says what a system holds and what it means. A platform page says how
 the system runs and what its quotas are. A system can have both.

@@ -20,6 +20,8 @@ needed.
 
 - [Style guides](style-guide.md): the guides the team follows, and where they live.
 - [Conventions](conventions.md): repository and data modeling conventions.
+- [Testing](testing.md): behavior at the usage level, the three sizes of
+  test, and what each kind of project must have.
 - [Development environments](environments.md): workstations, laptops, research
   VMs, and notebooks, and the rules that make them the same.
 - [Path to production](path-to-production.md): how code and models reach

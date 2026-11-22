@@ -1,7 +1,7 @@
 # Platform components, environments, quotas, and URLs.
 # Pages render these with macros, e.g. {{ platform.components.warehouse.quota }}.
 platform:
-  as_of: 2026-11-11
+  as_of: 2026-11-21
   environments:
     dev:
       purpose: Experimentation and development.
@@ -65,6 +65,29 @@ platform:
       product: CyberArk
       docs_url: null
       support_channel: "*[unverified: needs source]*"
+  # Style guides: one published guide and one enforcing tool per language.
+  # A fork replaces these. Rendered by docs/methods/development/style-guide.md.
+  style:
+    python:
+      guide_name: Google Python Style Guide
+      guide_url: https://google.github.io/styleguide/pyguide.html
+      tool_name: Ruff
+      tool_url: https://docs.astral.sh/ruff/
+      type_checker_name: ty
+      type_checker_url: https://docs.astral.sh/ty/
+    sql:
+      guide_name: How we style our dbt projects
+      guide_url: https://docs.getdbt.com/best-practices/how-we-style/0-how-we-style-our-dbt-projects
+      tool_name: "*[unverified: needs source]*"   # the linter or formatter that enforces the SQL guide
+  # Data contracts: the open format a contract is written in, and the tool
+  # that checks one. Rendered by docs/methods/development/conventions.md and
+  # docs/technology/tools.md.
+  contracts:
+    standard_name: Open Data Contract Standard
+    standard_url: https://bitol-io.github.io/open-data-contract-standard/latest/
+    standard_version: "3.2.0"
+    tool_name: Data Contract CLI
+    tool_url: https://cli.datacontract.com/
   # Development environment and path to production. The values below that look
   # like placeholders (example.com, your-*-project) are template placeholders a
   # fork replaces. The rest are the team's chosen settings, which the

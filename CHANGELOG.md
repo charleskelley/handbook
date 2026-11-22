@@ -5,6 +5,31 @@ Changes to the handbook specification and template. The format follows
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-11-22
+
+### Changed
+
+- The Data section follows the chain data moves along, with one `general`
+  page for each stage: `sources/index.md`, `factory.md`, `store.md`,
+  `training-data.md`, and `predictions.md`. System directories and
+  `source-system` pages move under `docs/data/sources/`, and the validator
+  looks for a system directory's index there.
+- The factory, store, training data, and predictions pages stop at the
+  concept. The detail lives in the factory's and the store's own
+  documentation and in each model's repository, and each page ends with a
+  note saying what that documentation must carry.
+- `general` is a page type of the Data section.
+
+### Added
+
+- Conventions gains a data contracts part: every data object read outside
+  the project that builds it has a contract file, in an open standard, kept
+  beside the code and checked in CI. The standard and the checking tool are
+  in a new `platform.contracts` block in `facts/platform.yaml`.
+- Data pages, all conceptual: the section overview rewritten around the
+  chain, and overview pages for Sources, Factory, Store, Training data, and
+  Predictions.
+
 ## [0.8.0] - 2026-11-21
 
 ### Changed

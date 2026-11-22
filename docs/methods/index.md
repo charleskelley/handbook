@@ -50,7 +50,7 @@ Nothing technical.
 is made about, the signals known at decision time, and nothing from after it.
 
 **How we practise it.** One directory per source system under
-[Data](../data/index.md), domains as subpages, and the trust and quirks of
+[Sources](../data/sources/index.md), domains as subpages, and the trust and quirks of
 each table written where the table is described. Level 1 of the
 [feature rule](development/experiment-tracking.md#feature-engineering-where-each-transformation-lives):
 joins, filters, and history aggregations live in SQL in the feature vertical,
@@ -247,7 +247,8 @@ data and is deployed and monitored.
 ### Development
 
 - [Development practices](development/index.md): style guides, conventions,
-  environments, path to production, experiment tracking, model monitoring.
+  testing, environments, path to production, experiment tracking, model
+  monitoring.
 
 ### Where to start
 

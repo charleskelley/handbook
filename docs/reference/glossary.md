@@ -27,6 +27,12 @@ Counterfactual
 :   What would have happened without the decision or treatment. The comparison
     every measured outcome needs.
 
+Data contract
+:   A file, kept beside the code that builds a data object, that says what
+    the object is, what each column means, and what a reader can rely on.
+    Written by whoever builds the data, and checked against the object. See
+    [Conventions](../methods/development/conventions.md#data-contracts).
+
 Decision log
 :   The record of each decision a model's prediction was turned into: the
     entity, the score, the policy and its version, the action, and when. The

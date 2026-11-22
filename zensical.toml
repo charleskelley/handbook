@@ -24,6 +24,11 @@ nav = [
   ] },
   { "Data" = [
     { "Overview" = "data/index.md" },
+    { "Sources" = "data/sources/index.md" },
+    { "Factory" = "data/factory.md" },
+    { "Store" = "data/store.md" },
+    { "Training data" = "data/training-data.md" },
+    { "Predictions" = "data/predictions.md" },
   ] },
   { "Methods" = [
     { "Overview" = "methods/index.md" },
@@ -59,6 +64,7 @@ nav = [
       { "Overview" = "methods/development/index.md" },
       { "Style guides" = "methods/development/style-guide.md" },
       { "Conventions" = "methods/development/conventions.md" },
+      { "Testing" = "methods/development/testing.md" },
       { "Development environments" = "methods/development/environments.md" },
       { "Path to production" = "methods/development/path-to-production.md" },
       { "Experiment tracking" = "methods/development/experiment-tracking.md" },

@@ -204,7 +204,7 @@ def validate(docs_dir: Path) -> list[str]:
                 loc = ".".join(str(x) for x in err["loc"]) or "front matter"
                 errors.append(f"{path}: {loc}: {err['msg']}")
             continue
-        is_system_index = path.name == "index.md" and path.parent.parent == docs_dir / "data"
+        is_system_index = path.name == "index.md" and path.parent.parent == docs_dir / "data" / "sources"
         depth, is_method = data.get("depth"), data["type"] == "method"
         if is_method != (depth is not None):
             errors.append(f"{path}: depth is required on a method page and allowed on no other")
