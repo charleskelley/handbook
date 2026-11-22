@@ -14,8 +14,8 @@ Terms the team and its partners use, defined once. Alphabetical. Where a page
 explains the term in depth, the definition links to it.
 
 Artifact
-:   A versioned, immutable build output stored in Artifactory: a package, a
-    container image, or a model version. Production runs only artifacts built
+:   A versioned, immutable build output stored in the artifact registry: a
+    package, a container image, or a model version. Production runs only artifacts built
     by CI. See [Path to production](../methods/development/path-to-production.md).
 
 Champion, challenger

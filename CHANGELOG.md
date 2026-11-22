@@ -5,6 +5,21 @@ Changes to the handbook specification and template. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Path to production opens with the environments a change passes through:
+  two as the rule, each described by who acts there, what data it sees, and
+  what may run there; and a comparison of one, two, three, and four or more
+  environments, with the rehearsal environment as the first one a team adds.
+- Path to production names roles, not products: the artifact registry, CI,
+  the model registry, the tracking server. The gates table, the release
+  table, and the wide flow chart are replaced by two small diagrams: the
+  two rules, and a swim lane of the eight steps from a branch to a promoted
+  model, with each step and its reason listed beneath.
+- Development environments names roles, not products, and places every way
+  of working inside dev, the environment where people act under their own
+  identity.
+
 ## [0.9.0] - 2026-11-22
 
 ### Changed

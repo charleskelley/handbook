@@ -24,8 +24,8 @@ needed.
   test, and what each kind of project must have.
 - [Development environments](environments.md): workstations, laptops, research
   VMs, and notebooks, and the rules that make them the same.
-- [Path to production](path-to-production.md): how code and models reach
-  production, and what never does.
+- [Path to production](path-to-production.md): the two environments, how
+  code, data, and models reach production, and what never does.
 - [Experiment tracking](experiment-tracking.md): recording research runs, the
   fixture production reproduces, and where feature code lives.
 - [Model monitoring](model-monitoring.md): the prediction log, drift,
